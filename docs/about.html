@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About me — background and contact." />
+    <title>About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#8ff5ff",
+              "on-primary": "#005d63",
+              "on-background": "#ffffff",
+              background: "#0e0e0f",
+              surface: "#0e0e0f",
+              "surface-container-low": "#131314",
+              "surface-container-high": "#201f21",
+              "surface-container-highest": "#262627",
+              "on-surface": "#ffffff",
+              "on-surface-variant": "#adaaab",
+              outline: "#767576",
+              "outline-variant": "#484849",
+            },
+            fontFamily: {
+              headline: ["Space Grotesk", "system-ui", "sans-serif"],
+              body: ["Inter", "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body
+    data-page="hub-about"
+    class="bg-background text-on-background font-body antialiased selection:bg-primary selection:text-on-primary overflow-x-hidden"
+  >
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header
+      class="site-header fixed top-0 z-50 w-full bg-zinc-950/40 backdrop-blur-xl"
+    >
+      <div
+        class="header-bar flex w-full max-w-screen-2xl mx-auto items-center justify-between gap-3 px-4 py-4 md:px-12 md:py-6"
+      >
+        <a
+          class="logo font-headline text-lg font-bold uppercase tracking-widest text-white md:text-2xl shrink-0 min-w-0 truncate"
+          href="index.html"
+          data-site-brand
+          >Portfolio</a
+        >
+        <button
+          type="button"
+          class="nav-toggle md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline-variant/40 text-zinc-300 hover:border-primary/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          aria-expanded="false"
+          aria-controls="site-nav"
+        >
+          <span class="material-symbols-outlined text-2xl" aria-hidden="true"
+            >menu</span
+          >
+          <span class="sr-only">Open menu</span>
+        </button>
+        <nav
+          class="site-nav flex min-w-0 flex-1 flex-wrap items-center justify-end gap-4 font-headline text-xs font-medium uppercase tracking-tighter text-zinc-400 md:static md:justify-center md:gap-8 md:text-sm lg:gap-10"
+          id="site-nav"
+          aria-label="Primary"
+        >
+          <a
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            href="index.html"
+            data-nav="portfolio"
+            >Portfolio</a
+          >
+          <a
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            href="games.html"
+            data-nav="games"
+            >Games</a
+          >
+          <a
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            href="about.html"
+            data-nav="about"
+            >About</a
+          >
+        </nav>
+        <div class="header-actions hidden shrink-0 items-center gap-3 sm:flex">
+          <button
+            type="button"
+            class="btn-share rounded-full bg-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest text-on-primary transition-all duration-300 hover:scale-95 active:opacity-80 md:px-8"
+            id="share-btn"
+          >
+            Share
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="pt-28 pb-24">
+      <div class="mx-auto max-w-3xl px-6 md:px-12">
+        <article id="about-root" class="about-article"></article>
+
+        <section
+          class="contact-section reveal-section mt-16 scroll-mt-28 rounded-xl border border-outline-variant/20 bg-surface-container-low/40 p-8 md:p-10"
+          id="contact"
+          aria-label="Contact"
+          data-reveal
+        >
+          <h2
+            class="article-h2 mb-6 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl"
+          >
+            Contact
+          </h2>
+          <p
+            class="prose-p contact-lede mb-6 max-w-xl text-lg text-on-surface-variant"
+          >
+            For hiring or collaboration, reach out on ArtStation, LinkedIn, or
+            email.
+          </p>
+          <ul class="contact-links flex flex-wrap gap-6">
+            <li>
+              <a
+                class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+                id="link-artstation"
+                href="#"
+                rel="noopener noreferrer"
+                >ArtStation</a
+              >
+            </li>
+            <li>
+              <a
+                class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+                id="link-linkedin"
+                href="#"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </li>
+            <li>
+              <a
+                class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+                id="link-email"
+                href="#"
+                >Email</a
+              >
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer bg-black px-6 py-16 md:px-12">
+      <div
+        class="mx-auto mb-12 block h-px w-full max-w-screen-2xl bg-zinc-900"
+      ></div>
+      <div
+        class="footer-inner mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-6 text-center text-sm uppercase tracking-widest text-zinc-500 md:flex-row md:flex-wrap md:justify-between md:text-left"
+      >
+        <p class="max-w-lg normal-case tracking-normal text-zinc-400" id="footer-tagline"></p>
+        <div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+          <a
+            class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+            id="footer-email"
+            href="#"
+            >Email</a
+          >
+          <a
+            id="footer-cv"
+            class="font-headline font-bold text-zinc-400 transition-colors hover:text-white"
+            href="#"
+            hidden
+            >CV</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
