@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -25,22 +25,62 @@
         theme: {
           extend: {
             colors: {
-              primary: "#8ff5ff",
-              "on-primary": "#005d63",
-              "on-background": "#ffffff",
-              background: "#0e0e0f",
-              surface: "#0e0e0f",
-              "surface-container-low": "#131314",
-              "surface-container-high": "#201f21",
-              "surface-container-highest": "#262627",
-              "on-surface": "#ffffff",
-              "on-surface-variant": "#adaaab",
-              outline: "#767576",
-              "outline-variant": "#484849",
+              background: "#121416",
+              surface: "#121416",
+              "surface-dim": "#121416",
+              "surface-bright": "#37393b",
+              "surface-container-lowest": "#0c0e10",
+              "surface-container-low": "#1a1c1e",
+              "surface-container": "#1e2022",
+              "surface-container-high": "#282a2c",
+              "surface-container-highest": "#333537",
+              "surface-variant": "#333537",
+
+              primary: "#8b0000",
+              "primary-container": "#8b0000",
+              "primary-fixed": "#ffb4a8",
+              "primary-fixed-dim": "#ff907f",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#ffffff",
+              "on-primary-fixed": "#410000",
+              "on-primary-fixed-variant": "#920703",
+              "inverse-primary": "#b52619",
+              "surface-tint": "#ffb4a8",
+
+              secondary: "#bbcabf",
+              "secondary-container": "#3c4a41",
+              "on-secondary": "#26332c",
+              "on-secondary-container": "#aab9ae",
+
+              tertiary: "#c1c7ce",
+              "tertiary-container": "#3d4348",
+              "on-tertiary": "#2b3136",
+              "on-tertiary-container": "#aaafb6",
+
+              error: "#ffb4ab",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+
+              outline: "#aa8984",
+              "outline-variant": "#5a403c",
+
+              "on-background": "#e2e2e5",
+              "on-surface": "#e2e2e5",
+              "on-surface-variant": "#e3beb8",
+              "inverse-surface": "#e2e2e5",
+              "inverse-on-surface": "#2f3133",
             },
             fontFamily: {
-              headline: ["Space Grotesk", "system-ui", "sans-serif"],
-              body: ["Inter", "system-ui", "sans-serif"],
+              headline: ["Newsreader", "serif"],
+              body: ["Manrope", "system-ui", "sans-serif"],
+              label: ["Space Grotesk", "ui-monospace", "monospace"],
+            },
+            borderRadius: {
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "9999px",
             },
           },
         },
@@ -55,20 +95,20 @@
     <a class="skip" href="#main">Skip to content</a>
 
     <header
-      class="site-header fixed top-0 z-50 w-full bg-zinc-950/40 backdrop-blur-xl"
+      class="site-header fixed top-0 z-50 w-full border-b border-outline-variant/15 bg-surface/80 backdrop-blur-xl"
     >
       <div
         class="header-bar flex w-full max-w-screen-2xl mx-auto items-center justify-between gap-3 px-4 py-4 md:px-12 md:py-6"
       >
         <a
-          class="logo font-headline text-lg font-bold uppercase tracking-widest text-white md:text-2xl shrink-0 min-w-0 truncate"
+          class="logo font-headline text-lg font-extrabold uppercase tracking-widest text-on-surface md:text-2xl shrink-0 min-w-0 truncate"
           href="index.html"
           data-site-brand
           >Portfolio</a
         >
         <button
           type="button"
-          class="nav-toggle md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline-variant/40 text-zinc-300 hover:border-primary/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          class="nav-toggle md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline-variant/40 text-on-surface/70 hover:border-primary/40 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-expanded="false"
           aria-controls="site-nav"
         >
@@ -78,24 +118,24 @@
           <span class="sr-only">Open menu</span>
         </button>
         <nav
-          class="site-nav flex min-w-0 flex-1 flex-wrap items-center justify-end gap-4 font-headline text-xs font-medium uppercase tracking-tighter text-zinc-400 md:static md:justify-center md:gap-8 md:text-sm lg:gap-10"
+          class="site-nav flex min-w-0 flex-1 flex-wrap items-center justify-end gap-4 font-headline text-xs font-medium uppercase tracking-tighter text-on-surface/60 md:static md:justify-center md:gap-8 md:text-sm lg:gap-10"
           id="site-nav"
           aria-label="Primary"
         >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="index.html"
             data-nav="portfolio"
             >Portfolio</a
           >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="games.html"
             data-nav="games"
             >Games</a
           >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="about.html"
             data-nav="about"
             >About</a
@@ -104,7 +144,7 @@
         <div class="header-actions hidden shrink-0 items-center gap-3 sm:flex">
           <button
             type="button"
-            class="btn-share rounded-full bg-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest text-on-primary transition-all duration-300 hover:scale-95 active:opacity-80 md:px-8"
+            class="btn-share rounded-full bg-primary-container px-6 py-2.5 font-label text-xs font-bold uppercase tracking-widest text-on-primary transition-all duration-300 hover:brightness-110 active:opacity-80 md:px-8"
             id="share-btn"
           >
             Share
@@ -114,39 +154,54 @@
     </header>
 
     <main id="main" class="pt-28 pb-24">
-      <div class="mx-auto max-w-screen-2xl px-6 md:px-12">
-        <h1
-          id="hub-page-title"
-          class="mb-2 font-headline text-4xl font-bold uppercase tracking-tighter text-white md:text-6xl"
-        >
-          Games
-        </h1>
-        <p id="hub-intro" class="mb-12 max-w-2xl text-lg text-on-surface-variant"></p>
-        <div
-          id="games-grid"
-          class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-        ></div>
-      </div>
+      <section class="relative overflow-hidden px-6 md:px-12">
+        <div class="mx-auto max-w-screen-2xl">
+          <div class="relative overflow-hidden p-8 md:p-14">
+            <div class="pointer-events-none absolute inset-0 opacity-30" aria-hidden="true">
+              <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-secondary-container/40 blur-3xl"></div>
+              <div class="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-primary-container/30 blur-3xl"></div>
+            </div>
+            <div class="relative">
+              <p class="mb-4 font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">
+                Project archive
+              </p>
+              <h1
+                id="hub-page-title"
+                class="mb-4 font-headline text-5xl font-extrabold uppercase tracking-tighter text-on-surface md:text-7xl"
+              >
+                Games
+              </h1>
+              <p id="hub-intro" class="max-w-2xl text-lg text-on-surface/70"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-12 px-6 md:px-12">
+        <div class="mx-auto max-w-screen-2xl">
+          <div id="games-grid" class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </div>
+      </section>
     </main>
 
-    <footer class="site-footer bg-black px-6 py-16 md:px-12">
+    <footer class="site-footer bg-surface-container-lowest px-6 py-16 md:px-12">
       <div
-        class="mx-auto mb-12 block h-px w-full max-w-screen-2xl bg-zinc-900"
+        class="mx-auto mb-12 block h-px w-full max-w-screen-2xl bg-outline-variant/20"
       ></div>
       <div
-        class="footer-inner mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-6 text-center text-sm uppercase tracking-widest text-zinc-500 md:flex-row md:flex-wrap md:justify-between md:text-left"
+        class="footer-inner mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-6 text-center font-label text-[10px] uppercase tracking-widest text-on-surface/40 md:flex-row md:flex-wrap md:justify-between md:text-left"
       >
-        <p class="max-w-lg normal-case tracking-normal text-zinc-400" id="footer-tagline"></p>
+        <p class="max-w-lg normal-case font-body tracking-normal text-on-surface/50" id="footer-tagline"></p>
         <div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
           <a
-            class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+            class="font-label font-bold text-primary-fixed transition-colors hover:text-on-surface"
             id="footer-email"
             href="#"
             >Email</a
           >
           <a
             id="footer-cv"
-            class="font-headline font-bold text-zinc-400 transition-colors hover:text-white"
+            class="font-label font-bold text-on-surface/50 transition-colors hover:text-on-surface"
             href="#"
             hidden
             >CV</a

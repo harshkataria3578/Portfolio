@@ -639,10 +639,11 @@
 
   function renderSection(sec, index) {
     const id = sec.slug || slugify(sec.heading) || `section-${index}`;
-    let html = `<section class="article-section reveal-section mb-12 scroll-mt-28 rounded-xl border border-outline-variant/20 bg-surface-container-low/40 p-8 md:p-10" id="${escapeHtml(id)}" aria-labelledby="h-${index}" data-reveal>`;
-    html += `<h2 class="article-h2 mb-4 font-headline text-3xl font-bold uppercase tracking-tighter text-white md:text-4xl" id="h-${index}">${escapeHtml(sec.heading)}</h2>`;
+    let html = `<section class="article-section reveal-section mb-12 scroll-mt-28 border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" id="${escapeHtml(id)}" aria-labelledby="h-${index}" data-reveal>`;
+    html += `<p class="mb-3 font-label text-[9px] font-bold uppercase tracking-[0.35em] text-primary-fixed/90">Technical breakdown</p>`;
+    html += `<h2 class="article-h2 mb-5 font-headline text-4xl font-extrabold uppercase tracking-tighter text-on-surface md:text-5xl" id="h-${index}">${escapeHtml(sec.heading)}</h2>`;
     if (sec.ornament) {
-      html += `<p class="ornament mb-6 text-center text-sm tracking-widest text-zinc-500" aria-hidden="true">${escapeHtml(sec.ornament)}</p>`;
+      html += `<p class="ornament mb-6 text-center font-label text-[10px] uppercase tracking-[0.35em] text-on-surface/35" aria-hidden="true">${escapeHtml(sec.ornament)}</p>`;
     }
     html += `<div class="prose mb-6">${renderParagraphs(sec.paragraphs)}</div>`;
     const linkBlock = renderReferenceLinks(sec.referenceLinks);
@@ -662,9 +663,9 @@
       html += `<div class="prose mb-6">${renderParagraphs(sec.afterEmbedParagraphs)}</div>`;
     }
     if (sec.bts && sec.bts.paragraphs && sec.bts.paragraphs.length) {
-      html += `<h3 class="article-h3 mt-10 font-headline text-xl font-semibold text-primary md:text-2xl">${escapeHtml(sec.bts.title || "Behind the scenes")}</h3>`;
+      html += `<h3 class="article-h3 mt-10 font-headline text-2xl font-bold text-primary-fixed md:text-3xl">${escapeHtml(sec.bts.title || "Behind the scenes")}</h3>`;
       if (sec.bts.ornament) {
-        html += `<p class="ornament sm mb-4 text-center text-xs tracking-widest text-zinc-500" aria-hidden="true">${escapeHtml(sec.bts.ornament)}</p>`;
+        html += `<p class="ornament sm mb-4 text-center font-label text-[10px] uppercase tracking-[0.35em] text-on-surface/35" aria-hidden="true">${escapeHtml(sec.bts.ornament)}</p>`;
       }
       html += `<div class="prose">${renderParagraphs(sec.bts.paragraphs)}</div>`;
     }
@@ -987,13 +988,23 @@
             ? `<img src="${thumbUrl}" alt="${escapeHtml(title)}" class="portfolio-piece-thumb" loading="lazy" />`
             : `<div class="portfolio-piece-thumb portfolio-piece-thumb--placeholder" aria-hidden="true"></div>`;
           return `
-            <li class="portfolio-piece" data-reveal>
-              <a class="portfolio-piece-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background" href="${href}">
+            <li class="portfolio-piece group" data-reveal>
+              <a class="portfolio-piece-card block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background" href="${href}">
                 <div class="portfolio-piece-visual">
-                  <div class="portfolio-piece-frame">${thumbInner}</div>
+                  <div class="portfolio-piece-frame relative overflow-hidden border border-outline-variant/25 bg-surface-container-lowest">
+                    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+                    ${thumbInner}
+                    <div class="pointer-events-none absolute bottom-3 left-3 right-3 flex items-end justify-between gap-4">
+                      <span class="inline-flex items-center gap-2 border border-outline-variant/20 bg-surface-container-highest/40 px-3 py-1 font-label text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface/80 backdrop-blur">
+                        <span class="h-1.5 w-1.5 rounded-full bg-primary-fixed"></span>
+                        Archive
+                      </span>
+                      <span class="hidden sm:inline font-label text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface/50">Open</span>
+                    </div>
+                  </div>
                 </div>
-                <h3 class="portfolio-piece-label">${escapeHtml(title)}</h3>
-                ${sub}
+                <h3 class="portfolio-piece-label mt-4 font-headline text-xl font-bold uppercase tracking-tight text-on-surface group-hover:text-primary-fixed">${escapeHtml(title)}</h3>
+                ${item.listSubtitle ? `<p class="portfolio-piece-sub mt-1 font-body text-sm text-on-surface/55">${escapeHtml(item.listSubtitle)}</p>` : ""}
               </a>
             </li>`;
         })
@@ -1029,14 +1040,21 @@
           const cover =
             item.coverImage &&
             String(item.coverImage).trim() &&
-            `<div class="aspect-video w-full overflow-hidden bg-black"><img class="h-full w-full object-cover" src="${escapeHtml(item.coverImage)}" alt="" loading="lazy" /></div>`;
-          const ph = `<div class="flex aspect-video w-full items-center justify-center bg-surface-container-high text-zinc-600"><span class="material-symbols-outlined text-4xl" aria-hidden="true">sports_esports</span></div>`;
+            `<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
+              <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+              <img class="h-full w-full object-cover opacity-80 grayscale transition-all duration-700 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105" src="${escapeHtml(item.coverImage)}" alt="" loading="lazy" />
+            </div>`;
+          const ph = `<div class="relative flex aspect-video w-full items-center justify-center bg-surface-container-highest text-on-surface/30">
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
+            <span class="material-symbols-outlined text-5xl" aria-hidden="true">sports_esports</span>
+          </div>`;
           return `
-            <a class="game-card group block overflow-hidden rounded-xl border border-outline-variant/20 bg-surface-container-low/40 transition-all hover:border-primary/35 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background" href="${href}" data-reveal>
+            <a class="game-card group block overflow-hidden border border-outline-variant/15 bg-surface-container-low/40 transition-all hover:border-primary/35 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background" href="${href}" data-reveal>
               ${cover || ph}
-              <div class="p-5">
-                <h2 class="font-headline text-lg font-bold uppercase tracking-tight text-white group-hover:text-primary">${escapeHtml(item.listTitle || item.entry?.title || item.slug)}</h2>
-                ${item.listSubtitle ? `<p class="mt-1 text-sm text-zinc-500">${escapeHtml(item.listSubtitle)}</p>` : ""}
+              <div class="p-6">
+                <p class="mb-3 font-label text-[9px] font-bold uppercase tracking-[0.25em] text-primary-fixed/90">Archive entry</p>
+                <h2 class="font-headline text-2xl font-bold uppercase tracking-tight text-on-surface group-hover:text-primary-fixed">${escapeHtml(item.listTitle || item.entry?.title || item.slug)}</h2>
+                ${item.listSubtitle ? `<p class="mt-2 font-body text-sm text-on-surface/55">${escapeHtml(item.listSubtitle)}</p>` : ""}
               </div>
             </a>`;
         })
@@ -1062,14 +1080,49 @@
     const skills =
       about.skills &&
       about.skills.length &&
-      `<ul class="about-skills mt-8 flex flex-wrap gap-2">${about.skills.map((s) => `<li class="rounded-md border border-outline-variant bg-surface-container-high px-3 py-1 text-xs font-bold uppercase tracking-wide text-zinc-400">${escapeHtml(s)}</li>`).join("")}</ul>`;
+      `<ul class="about-skills mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">${about.skills
+        .map(
+          (s) => `
+          <li class="group border border-outline-variant/15 bg-surface-container-low/40 p-6">
+            <div class="mb-4 flex h-11 w-11 items-center justify-center border border-outline-variant/20 bg-surface-container-highest/40">
+              <span class="material-symbols-outlined text-primary-fixed" aria-hidden="true">architecture</span>
+            </div>
+            <h3 class="font-headline text-xl font-bold text-on-surface">${escapeHtml(s)}</h3>
+            <p class="mt-2 font-body text-sm text-on-surface/55">Toolkit proficiency</p>
+            <div class="mt-6 h-px w-0 bg-primary-container transition-all duration-500 group-hover:w-full"></div>
+          </li>`
+        )
+        .join("")}</ul>`;
 
     host.innerHTML = `
-      ${portrait || ""}
-      <h1 class="mb-4 font-headline text-4xl font-bold uppercase tracking-tighter text-white md:text-5xl">${escapeHtml(about.heading || "About me")}</h1>
-      ${about.lead ? `<p class="mb-6 text-xl text-primary">${escapeHtml(about.lead)}</p>` : ""}
-      <div class="about-prose space-y-4 text-lg leading-relaxed text-on-surface-variant">${renderParagraphs(about.paragraphs || [])}</div>
-      ${skills || ""}
+      <section class="reveal-section mb-12 border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-start">
+          <div class="md:col-span-7">
+            <p class="mb-4 font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Profile</p>
+            <h2 class="font-headline text-5xl font-extrabold tracking-tighter text-on-surface md:text-6xl">${escapeHtml(about.heading || "About me")}</h2>
+            ${about.lead ? `<p class="mt-6 text-xl font-body text-on-surface/75">${escapeHtml(about.lead)}</p>` : ""}
+            <div class="about-prose mt-8 space-y-4 text-lg leading-relaxed text-on-surface/65">${renderParagraphs(about.paragraphs || [])}</div>
+          </div>
+          <div class="md:col-span-5">
+            <div class="glass-panel border border-outline-variant/15 p-6">
+              <p class="font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Current status</p>
+              <p class="mt-3 font-body text-sm text-on-surface/60">Open to collaboration and internships.</p>
+            </div>
+            ${portrait ? `<div class="mt-8">${portrait}</div>` : ""}
+          </div>
+        </div>
+      </section>
+
+      ${skills ? `<section class="reveal-section border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Toolkit schema</p>
+            <h2 class="mt-2 font-headline text-4xl font-bold uppercase tracking-tighter text-on-surface">Skills</h2>
+          </div>
+          <p class="font-label text-[10px] uppercase tracking-[0.4em] text-on-surface/40 md:text-right">Execution platforms</p>
+        </div>
+        ${skills}
+      </section>` : ""}
     `;
   }
 
@@ -1188,7 +1241,16 @@
   }
 
   function initDetail() {
-    const { item } = resolveDetailPageItem();
+    const resolved = resolveDetailPageItem();
+    const item = resolved?.item;
+
+    const slug = item?.slug || normalizeSlug(mergeDetailParams().slug);
+    if (slug && String(slug).trim()) {
+      document.body.setAttribute("data-detail-slug", String(slug).trim());
+    }
+    if (resolved?.kind) {
+      document.body.setAttribute("data-detail-kind", String(resolved.kind));
+    }
 
     if (!item) {
       setDocumentMeta(`Not found — ${site.name || "Portfolio"}`, "");

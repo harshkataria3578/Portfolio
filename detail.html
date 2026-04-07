@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700;6..72,800&family=Manrope:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -22,68 +22,62 @@
         theme: {
           extend: {
             colors: {
-              primary: "#8ff5ff",
-              "on-background": "#ffffff",
-              "primary-fixed": "#00eefc",
-              "surface-container": "#1a191b",
-              "surface-bright": "#2c2c2d",
-              "surface-container-low": "#131314",
-              "secondary-dim": "#874cff",
-              "secondary-container": "#7000ff",
-              "error-container": "#a70138",
-              "on-secondary-fixed-variant": "#6300e2",
-              "on-tertiary-fixed-variant": "#760035",
-              "on-secondary-fixed": "#41009a",
-              "on-surface-variant": "#adaaab",
-              "primary-container": "#00eefc",
-              "on-primary-container": "#005359",
-              error: "#ff6e84",
-              surface: "#0e0e0f",
-              "surface-dim": "#0e0e0f",
-              "on-tertiary-container": "#000000",
-              tertiary: "#ff6b98",
-              "surface-container-highest": "#262627",
-              secondary: "#ac89ff",
-              "on-surface": "#ffffff",
-              outline: "#767576",
-              "inverse-surface": "#fcf8f9",
-              "on-primary-fixed": "#003f43",
-              "on-error-container": "#ffb2b9",
-              "error-dim": "#d73357",
-              "surface-container-lowest": "#000000",
-              background: "#0e0e0f",
-              "secondary-fixed-dim": "#ceb9ff",
-              "primary-fixed-dim": "#00deec",
-              "on-error": "#490013",
-              "secondary-fixed": "#dac9ff",
-              "on-secondary-container": "#f8f1ff",
-              "on-primary-fixed-variant": "#005e64",
-              "on-primary": "#005d63",
-              "tertiary-dim": "#e4006c",
-              "primary-dim": "#00deec",
-              "surface-variant": "#262627",
-              "inverse-primary": "#006a71",
-              "surface-tint": "#8ff5ff",
-              "outline-variant": "#484849",
-              "on-secondary": "#290067",
-              "tertiary-container": "#fc0078",
-              "tertiary-fixed-dim": "#ff769e",
-              "surface-container-high": "#201f21",
-              "on-tertiary-fixed": "#380015",
-              "inverse-on-surface": "#565556",
-              "on-tertiary": "#47001d",
-              "tertiary-fixed": "#ff8eac",
+              background: "#121416",
+              surface: "#121416",
+              "surface-dim": "#121416",
+              "surface-bright": "#37393b",
+              "surface-container-lowest": "#0c0e10",
+              "surface-container-low": "#1a1c1e",
+              "surface-container": "#1e2022",
+              "surface-container-high": "#282a2c",
+              "surface-container-highest": "#333537",
+              "surface-variant": "#333537",
+
+              primary: "#8b0000",
+              "primary-container": "#8b0000",
+              "primary-fixed": "#ffb4a8",
+              "primary-fixed-dim": "#ff907f",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#ffffff",
+              "on-primary-fixed": "#410000",
+              "on-primary-fixed-variant": "#920703",
+              "inverse-primary": "#b52619",
+              "surface-tint": "#ffb4a8",
+
+              secondary: "#bbcabf",
+              "secondary-container": "#3c4a41",
+              "on-secondary": "#26332c",
+              "on-secondary-container": "#aab9ae",
+
+              tertiary: "#c1c7ce",
+              "tertiary-container": "#3d4348",
+              "on-tertiary": "#2b3136",
+              "on-tertiary-container": "#aaafb6",
+
+              error: "#ffb4ab",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+
+              outline: "#aa8984",
+              "outline-variant": "#5a403c",
+
+              "on-background": "#e2e2e5",
+              "on-surface": "#e2e2e5",
+              "on-surface-variant": "#e3beb8",
+              "inverse-surface": "#e2e2e5",
+              "inverse-on-surface": "#2f3133",
             },
             borderRadius: {
-              DEFAULT: "0.125rem",
-              lg: "0.25rem",
-              xl: "0.5rem",
-              full: "0.75rem",
+              DEFAULT: "0px",
+              lg: "0px",
+              xl: "0px",
+              full: "9999px",
             },
             fontFamily: {
-              headline: ["Space Grotesk", "system-ui", "sans-serif"],
-              body: ["Inter", "system-ui", "sans-serif"],
-              label: ["Inter", "system-ui", "sans-serif"],
+              headline: ["Newsreader", "serif"],
+              body: ["Manrope", "system-ui", "sans-serif"],
+              label: ["Space Grotesk", "ui-monospace", "monospace"],
             },
           },
         },
@@ -98,13 +92,13 @@
     <a class="skip" href="#main">Skip to content</a>
 
     <header
-      class="site-header fixed top-0 z-50 w-full bg-zinc-950/40 backdrop-blur-xl"
+      class="site-header fixed top-0 z-50 w-full border-b border-outline-variant/15 bg-surface/80 backdrop-blur-xl"
     >
       <div
         class="header-bar flex w-full max-w-screen-2xl mx-auto items-center justify-between gap-3 px-4 py-4 md:px-12 md:py-6"
       >
         <a
-          class="logo font-headline text-lg font-bold uppercase tracking-widest text-white md:text-2xl shrink-0 min-w-0 truncate"
+          class="logo font-headline text-lg font-extrabold uppercase tracking-widest text-on-surface md:text-2xl shrink-0 min-w-0 truncate"
           href="index.html"
           data-site-brand
           data-reveal
@@ -113,7 +107,7 @@
         >
         <button
           type="button"
-          class="nav-toggle md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline-variant/40 text-zinc-300 hover:border-primary/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          class="nav-toggle md:hidden inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-outline-variant/40 text-on-surface/70 hover:border-primary/40 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-surface"
           aria-expanded="false"
           aria-controls="site-nav"
         >
@@ -123,38 +117,38 @@
           <span class="sr-only">Open menu</span>
         </button>
         <nav
-          class="site-nav flex min-w-0 max-w-[55%] flex-1 flex-wrap items-center justify-end gap-4 overflow-x-auto font-headline text-xs font-medium uppercase tracking-tighter text-zinc-400 md:max-w-none md:justify-center md:gap-8 md:text-sm lg:gap-10"
+          class="site-nav flex min-w-0 max-w-[55%] flex-1 flex-wrap items-center justify-end gap-4 overflow-x-auto font-headline text-xs font-medium uppercase tracking-tighter text-on-surface/60 md:max-w-none md:justify-center md:gap-8 md:text-sm lg:gap-10"
           id="site-nav"
           aria-label="Primary"
         >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="index.html"
             data-nav="portfolio"
             >Portfolio</a
           >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="games.html"
             data-nav="games"
             >Games</a
           >
           <a
-            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-zinc-400 transition-colors duration-300 hover:border-primary hover:text-white"
+            class="site-nav-link border-b-2 border-transparent pb-1 font-headline text-sm uppercase tracking-tighter text-on-surface/60 transition-colors duration-300 hover:border-primary hover:text-on-surface"
             href="about.html"
             data-nav="about"
             >About</a
           >
         </nav>
         <nav
-          class="hidden min-w-0 max-w-[28%] flex-1 flex-wrap items-center justify-end gap-2 overflow-x-auto font-headline text-[10px] font-medium uppercase tracking-tighter text-zinc-500 lg:flex xl:gap-3"
+          class="hidden min-w-0 max-w-[28%] flex-1 flex-wrap items-center justify-end gap-2 overflow-x-auto font-label text-[10px] font-medium uppercase tracking-widest text-on-surface/40 lg:flex xl:gap-3"
           id="toc-nav"
           aria-label="On this page"
         ></nav>
         <div class="header-actions hidden shrink-0 items-center gap-3 sm:flex">
           <button
             type="button"
-            class="btn-share rounded-full bg-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest text-on-primary transition-all duration-300 hover:scale-95 active:opacity-80 md:px-8"
+            class="btn-share rounded-full bg-primary-container px-6 py-2.5 font-label text-xs font-bold uppercase tracking-widest text-on-primary transition-all duration-300 hover:brightness-110 active:opacity-80 md:px-8"
             id="share-btn"
             data-reveal
             style="--reveal-delay: 90ms; --reveal-y: 0.5rem"
@@ -173,7 +167,7 @@
       >
         <div
           id="hero-root"
-          class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden pt-24"
+          class="relative flex min-h-screen flex-col items-center justify-end overflow-hidden pt-24"
         >
           <div class="pointer-events-none absolute inset-0 z-0">
             <div class="hero-ambient z-[1]" aria-hidden="true">
@@ -198,10 +192,10 @@
               aria-hidden="true"
             ></canvas>
             <div
-              class="absolute inset-0 z-10 bg-gradient-to-t from-background via-transparent to-background/20"
+              class="absolute inset-0 z-10 bg-gradient-to-t from-background via-transparent to-transparent"
             ></div>
             <div
-              class="absolute inset-0 z-10 bg-gradient-to-r from-background via-transparent to-background"
+              class="absolute inset-0 z-10 bg-gradient-to-r from-background via-transparent to-background/90"
             ></div>
           </div>
 
@@ -215,18 +209,18 @@
             ></div>
             <div class="entry-head-inner">
               <p
-                class="entry-badge mb-8 inline-flex items-center gap-3 rounded-full border border-outline-variant/20 bg-surface-container-highest/30 px-4 py-1.5 font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-primary backdrop-blur-sm"
+                class="entry-badge mb-6 inline-flex items-center gap-3 border border-outline-variant/20 bg-surface-container-highest/35 px-4 py-2 font-label text-[9px] font-bold uppercase tracking-[0.35em] text-primary-fixed backdrop-blur-sm"
                 data-reveal
                 style="--reveal-delay: 0ms"
               >
                 <span
-                  class="h-2 w-2 animate-pulse rounded-full bg-primary"
+                  class="h-2 w-2 animate-pulse rounded-full bg-primary-fixed"
                   aria-hidden="true"
                 ></span>
                 <span id="entry-badge">Portfolio entry</span>
               </p>
               <h1
-                class="entry-title entry-title-live mb-6 font-headline text-5xl font-bold uppercase leading-[0.9] tracking-tighter md:text-7xl lg:text-8xl"
+                class="entry-title entry-title-live mb-6 font-headline text-6xl font-extrabold uppercase leading-[0.85] tracking-tighter md:text-8xl"
                 id="entry-title"
                 data-reveal
                 style="--reveal-delay: 80ms"
@@ -234,7 +228,7 @@
                 Work
               </h1>
               <p
-                class="entry-byline mb-4 text-sm text-zinc-400 md:text-base"
+                class="entry-byline mb-4 font-body text-sm text-on-surface/60 md:text-base"
                 id="entry-byline"
                 data-reveal
                 style="--reveal-delay: 150ms"
@@ -246,7 +240,7 @@
                 style="--reveal-delay: 210ms"
               ></div>
               <p
-                class="entry-excerpt mx-auto max-w-2xl text-lg leading-relaxed tracking-wide text-on-surface-variant md:text-xl"
+                class="entry-excerpt mx-auto max-w-2xl font-body text-lg leading-relaxed text-on-surface/75 md:text-xl"
                 id="entry-excerpt"
                 data-reveal
                 style="--reveal-delay: 270ms"
@@ -363,27 +357,27 @@
     </main>
 
     <footer
-      class="site-footer bg-black px-6 py-16 md:px-12"
+      class="site-footer bg-surface-container-lowest px-6 py-16 md:px-12"
       data-reveal
       style="--reveal-y: 2rem"
     >
       <div
-        class="mx-auto mb-12 block h-px w-full max-w-screen-2xl bg-zinc-900"
+        class="mx-auto mb-12 block h-px w-full max-w-screen-2xl bg-outline-variant/20"
       ></div>
       <div
-        class="footer-inner mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-6 text-center text-sm uppercase tracking-widest text-zinc-500 md:flex-row md:flex-wrap md:justify-between md:text-left"
+        class="footer-inner mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-6 text-center font-label text-[10px] uppercase tracking-widest text-on-surface/40 md:flex-row md:flex-wrap md:justify-between md:text-left"
       >
-        <p class="max-w-lg normal-case tracking-normal text-zinc-400" id="footer-tagline"></p>
+        <p class="max-w-lg normal-case font-body tracking-normal text-on-surface/50" id="footer-tagline"></p>
         <div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
           <a
-            class="font-headline font-bold text-primary transition-colors hover:text-primary-fixed"
+            class="font-label font-bold text-primary-fixed transition-colors hover:text-on-surface"
             id="footer-email"
             href="#"
             >Email</a
           >
           <a
             id="footer-cv"
-            class="font-headline font-bold text-zinc-400 transition-colors hover:text-white"
+            class="font-label font-bold text-on-surface/50 transition-colors hover:text-on-surface"
             href="#"
             hidden
             >CV</a

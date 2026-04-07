@@ -1,5 +1,78 @@
 /* Complements Tailwind: accessibility, glass panel, motion system */
 
+/* ----- Obsidian/Sanguine skin helpers (purely visual) ----- */
+body {
+  background: radial-gradient(circle at 15% 20%, rgba(60, 74, 65, 0.35) 0%, rgba(18, 20, 22, 1) 60%);
+}
+
+/* Detail pages: keep only section panels (no body slab) */
+body[data-detail-slug="hybrid-action-combat-system"] .article-body-live,
+body[data-detail-slug="sample-team-project"] .article-body-live {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-top: 0 !important;
+}
+
+/* Remove drifting grid overlay on these pages */
+body[data-detail-slug="hybrid-action-combat-system"] .article-body-live::before,
+body[data-detail-slug="sample-team-project"] .article-body-live::before {
+  opacity: 0 !important;
+}
+
+body[data-detail-slug="hybrid-action-combat-system"] .article-section,
+body[data-detail-slug="sample-team-project"] .article-section {
+  background: rgba(60, 74, 65, 0.10) !important;
+  border-color: rgba(90, 64, 60, 0.18) !important;
+}
+
+/* Remove "big black rectangles" (video frames) so they blend */
+body[data-detail-slug="hybrid-action-combat-system"] .hero-frame,
+body[data-detail-slug="sample-team-project"] .hero-frame,
+body[data-detail-slug="hybrid-action-combat-system"] .media-frame,
+body[data-detail-slug="sample-team-project"] .media-frame {
+  background: rgba(60, 74, 65, 0.12) !important;
+  border-color: rgba(90, 64, 60, 0.22) !important;
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.55);
+}
+
+body[data-detail-slug="hybrid-action-combat-system"] iframe,
+body[data-detail-slug="sample-team-project"] iframe {
+  background: transparent !important;
+}
+
+.glass-panel {
+  background: rgba(60, 74, 65, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.entry-title-live {
+  background-image: linear-gradient(
+    105deg,
+    #e2e2e5 0%,
+    #ffb4a8 24%,
+    #bbcabf 52%,
+    #e2e2e5 78%,
+    #ffb4a8 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: title-shimmer 10s linear infinite;
+}
+
+@keyframes title-shimmer {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
 /* Report-style reference grids (portfolio detail sections) */
 .media-grid {
   display: grid;
@@ -31,8 +104,8 @@
   left: -9999px;
   top: 0;
   padding: 0.5rem 1rem;
-  background: #8ff5ff;
-  color: #005d63;
+  background: #ffb4a8;
+  color: #410000;
   z-index: 100;
   font-weight: 700;
   border-radius: 9999px;
@@ -117,7 +190,7 @@
 
 .nav-toggle:focus-visible,
 .site-nav-link:focus-visible {
-  outline: 2px solid #8ff5ff;
+  outline: 2px solid #ffb4a8;
   outline-offset: 3px;
 }
 
@@ -264,10 +337,10 @@ body[data-article-layout="simple"] .article-ambient {
   width: 100%;
   overflow: hidden;
   border-radius: 0.75rem;
-  border: 1px solid rgba(72, 72, 73, 0.45);
+  border: 1px solid rgba(90, 64, 60, 0.45);
   background: #000;
   box-shadow:
-    0 0 0 1px rgba(143, 245, 255, 0.06),
+    0 0 0 1px rgba(255, 180, 168, 0.06),
     0 24px 48px -24px rgba(0, 0, 0, 0.65);
 }
 
@@ -338,15 +411,15 @@ body[data-article-layout="simple"] .article-ambient {
   }
 
   .portfolio-piece-card:hover .portfolio-piece-frame {
-    border-color: rgba(143, 245, 255, 0.28);
+    border-color: rgba(255, 180, 168, 0.28);
     box-shadow:
-      0 0 0 1px rgba(143, 245, 255, 0.12),
+      0 0 0 1px rgba(255, 180, 168, 0.12),
       0 28px 56px -20px rgba(0, 0, 0, 0.7),
-      0 0 36px -12px rgba(135, 76, 255, 0.12);
+      0 0 36px -12px rgba(187, 202, 191, 0.12);
   }
 
   .portfolio-piece-card:hover .portfolio-piece-label {
-    color: #8ff5ff;
+    color: #ffb4a8;
   }
 }
 
@@ -665,33 +738,6 @@ html.reduced-motion [data-reveal].reveal-section.is-inview {
   }
 }
 
-/* Title gradient shimmer */
-.entry-title-live {
-  background-image: linear-gradient(
-    105deg,
-    #ffffff 0%,
-    #8ff5ff 22%,
-    #ac89ff 48%,
-    #ffffff 72%,
-    #8ff5ff 100%
-  );
-  background-size: 220% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  animation: title-shimmer 10s linear infinite;
-}
-
-@keyframes title-shimmer {
-  0% {
-    background-position: 0% center;
-  }
-  100% {
-    background-position: 200% center;
-  }
-}
-
 /* Article background drift */
 .article-body-live::before {
   content: "";
@@ -702,12 +748,12 @@ html.reduced-motion [data-reveal].reveal-section.is-inview {
   opacity: 0.055;
   background-image:
     linear-gradient(
-      rgba(143, 245, 255, 0.35) 1px,
+      rgba(255, 180, 168, 0.22) 1px,
       transparent 1px
     ),
     linear-gradient(
       90deg,
-      rgba(172, 137, 255, 0.25) 1px,
+      rgba(187, 202, 191, 0.16) 1px,
       transparent 1px
     );
   background-size: 48px 48px;
