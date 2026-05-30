@@ -948,13 +948,22 @@
     if (title) title.textContent = hub.hubTitle || "Portfolio";
 
     const excerpt = document.getElementById("entry-excerpt");
-    if (excerpt && hub.hubIntro) excerpt.textContent = hub.hubIntro;
+    if (excerpt) {
+      excerpt.textContent = "";
+      excerpt.hidden = true;
+    }
 
     const by = document.getElementById("entry-byline");
-    if (by) by.innerHTML = "";
+    if (by) {
+      by.innerHTML = "";
+      by.hidden = true;
+    }
 
     const cats = document.getElementById("entry-categories");
-    if (cats) cats.innerHTML = "";
+    if (cats) {
+      cats.innerHTML = "";
+      cats.hidden = true;
+    }
 
     const reel = hub.reel;
     const wrap = document.getElementById("hero-slot");
