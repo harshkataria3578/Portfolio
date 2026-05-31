@@ -333,7 +333,7 @@ body[data-article-layout="simple"] .article-ambient {
 
 .portfolio-piece-frame {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1024 / 723;
   width: 100%;
   overflow: hidden;
   border-radius: 0.75rem;
@@ -349,6 +349,7 @@ body[data-article-layout="simple"] .article-ambient {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .portfolio-piece-thumb--placeholder {
@@ -905,6 +906,27 @@ html.reduced-motion [data-reveal].reveal-section.is-inview {
 
 .reveal-section.is-inview .tech-grid .tech-block:nth-child(3) {
   animation-delay: 0.28s;
+}
+
+/* Design references — show the three reference boards side by side */
+#design-references .tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+#design-references .tech-grid .tech-block {
+  padding: 1rem;
+}
+
+#design-references .tech-grid .tech-title {
+  font-size: 0.7rem;
+}
+
+@media (max-width: 768px) {
+  #design-references .tech-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Final / thanks / contact blocks (use reveal-section or data-reveal on section) */

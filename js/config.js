@@ -31,7 +31,7 @@ window.PORTFOLIO_CONFIG = {
         listTitle: "Hybrid Action Combat System — Maya & UE5",
         listSubtitle: "Souls-like weight meets hack-and-slash flow",
         /** Thumbnail URL for portfolio card (wide image over taupe plate). Add when ready. */
-        thumbnail: "",
+        thumbnail: "assets/hybrid-action-combat-poster.png",
         entry: {
           badge: "Artefact report",
           title: "Hybrid Action Combat System",
@@ -69,58 +69,34 @@ window.PORTFOLIO_CONFIG = {
             tech: [],
           },
           {
-            slug: "reference-elden",
-            heading: "Design reference — weight & precision (Elden Ring)",
+            slug: "design-references",
+            heading: "Design references — weight, flow & spectacle",
             ornament: "",
             paragraphs: [
-              "Elden Ring (FromSoftware) was used as the primary reference for weight: stamina management, high lethality, and deliberate timing. Takeaways carried into the project include respecting startup and recovery commitment so attacks feel grounded, and anchoring the character to the environment so encounters read as tactical rather than arcade-only.",
+              "Three titles anchored the hybrid brief. Elden Ring (FromSoftware) was the primary reference for weight: stamina management, high lethality, and deliberate timing — respecting startup and recovery commitment so attacks feel grounded, and anchoring the character to the environment so encounters read as tactical rather than arcade-only.",
+              "Devil May Cry 5 (Capcom) informed the hack-and-slash side: animation-aware canceling, extended combos, and spectacle through clear feedback. Input buffering and smoother state transitions were priorities so the hybrid still feels responsive when the player chains actions.",
+              "Black Myth: Wukong tied the two together as a contemporary hybrid: grounded movement paired with fast attack cadence and explicit resource rules (stamina and similar systems). It supported the target feel that scale, speed, and weight can coexist in one production-style action framework.",
             ],
             embed: null,
             afterEmbedParagraphs: [],
             bts: null,
             tech: [
               {
-                title: "Analysis board (development report)",
+                title: "Elden Ring — weight & precision",
                 caption:
                   "Stamina management, lethality, startup/recovery frames, and grounded stance — carried forward into the hybrid spec.",
                 image: "img/hybrid-report/image2.jpeg",
                 imageAlt: "Elden Ring reference notes and still",
               },
-            ],
-          },
-          {
-            slug: "reference-dmc",
-            heading: "Design reference — flow & spectacle (Devil May Cry 5)",
-            ornament: "",
-            paragraphs: [
-              "Devil May Cry 5 (Capcom) informed the hack-and-slash side: animation-aware canceling, extended combos, and spectacle through clear feedback. Input buffering and smoother state transitions were priorities so the hybrid still feels responsive when the player chains actions.",
-            ],
-            embed: null,
-            afterEmbedParagraphs: [],
-            bts: null,
-            tech: [
               {
-                title: "Analysis board (development report)",
+                title: "Devil May Cry 5 — flow & spectacle",
                 caption:
                   "Canceling, combo flow, input buffering, and VFX-forward feedback informed the responsiveness pillar.",
                 image: "img/hybrid-report/image3.png",
                 imageAlt: "Devil May Cry 5 reference notes",
               },
-            ],
-          },
-          {
-            slug: "reference-wukong",
-            heading: "Hybrid case study — Black Myth: Wukong",
-            ornament: "",
-            paragraphs: [
-              "Black Myth: Wukong was used as a contemporary example of hybrid combat: grounded movement paired with fast attack cadence and explicit resource rules (stamina and similar systems). It supported the target feel that scale, speed, and weight can coexist in one production-style action framework.",
-            ],
-            embed: null,
-            afterEmbedParagraphs: [],
-            bts: null,
-            tech: [
               {
-                title: "Case study board (development report)",
+                title: "Black Myth: Wukong — hybrid case study",
                 caption:
                   "Grounded locomotion vs fast cadence and explicit resources — the primary “target feel” reference for this artefact.",
                 image: "img/hybrid-report/image4.jpeg",
@@ -129,11 +105,26 @@ window.PORTFOLIO_CONFIG = {
             ],
           },
           {
-            slug: "motion-references",
-            heading: "Combat & motion reference boards",
+            slug: "pipeline",
+            heading: "Technical pipeline — Animation & rigging",
             ornament: "",
             paragraphs: [
-              "Greatsword swings, finisher beats, and attack timing were planned against motion boards and YouTube reference collections before blocking anything in Maya. Locomotion and light-attack excerpts below are taken directly from the development report slides (lazy-loaded GIFs). Heavy, charged, hit-react, and enemy suites follow the same layout in the deck.",
+              "Workflow: Maya → FBX → Unreal Engine 5.",
+              "I used two characters — one player and one enemy — from Epic's Paragon content (released free for Unreal Engine). They came already rigged, so I just used Maya to define the bones and make the animation controls.",
+              "I used references from games like Elden Ring, Sekiro, and Where Winds Meet for creating my combat animations.",
+            ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "motion-references",
+            heading: "Player Animations",
+            ornament: "",
+            paragraphs: [
+              "I used the references linked below (greatsword swings, finisher beats, and attack timing from YouTube collections) to animate the player in Maya. The GIFs further down are animations I made in Maya — currently the locomotion cycles and the light attack chain.",
+              "The remaining player animations are still being added: heavy attack combo, charged attack, dodge, hit reacts, death, and finisher. I'll upload those and update the GIFs here later.",
             ],
             referenceLinks: [
               {
@@ -142,11 +133,11 @@ window.PORTFOLIO_CONFIG = {
               },
               {
                 label: "Finisher / execution references",
-                url: "https://www.youtube.com/watch?v=R_oxj_oayYE",
+                url: "https://www.youtube.com/watch?v=wodFkPrFUag",
               },
               {
                 label: "Attack timing references",
-                url: "https://www.youtube.com/watch?v=wodFkPrFUag",
+                url: "https://www.youtube.com/watch?v=R_oxj_oayYE",
               },
             ],
             mediaGrid: [
@@ -208,18 +199,6 @@ window.PORTFOLIO_CONFIG = {
                   },
                 ],
               },
-            ],
-            embed: null,
-            afterEmbedParagraphs: [],
-            bts: null,
-            tech: [],
-          },
-          {
-            slug: "pipeline",
-            heading: "Technical pipeline — Maya to Unreal Engine 5",
-            ornament: "",
-            paragraphs: [
-              "The content path is Maya exports to FBX, then integration in Unreal Engine 5. Characters were brought in rigged; Maya was used to define bones and animation controls. Motion study leaned on references from Elden Ring, Sekiro, and Where Winds Meet to keep attacks, hit reactions, and locomotion coherent for a third-person action camera.",
             ],
             embed: null,
             afterEmbedParagraphs: [],
