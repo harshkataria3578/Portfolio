@@ -607,6 +607,293 @@ window.PORTFOLIO_CONFIG = {
           "Hack-and-slash",
         ],
       },
+      {
+        slug: "vfx-animation",
+        /** Dedicated page (no query string). Keep in sync with data-detail-slug on that HTML file. */
+        detailPage: "vfx-animation.html",
+        listTitle: "Melee Combat: VFX & Animation — Substance Designer, Niagara & Maya",
+        listSubtitle: "Real-time effects from texture to motion",
+        /** Thumbnail URL for portfolio card. Add when ready. */
+        thumbnail: "assets/melee-combat-vfx-poster.png",
+        entry: {
+          badge: "Melee combat showcase",
+          title: "Melee Combat: VFX & Animation",
+          author: "Harsh Kataria",
+          authorUrl: "",
+          context: "Showcase · Substance Designer, Niagara & Maya",
+          contextUrl: "",
+          date: "2026",
+          categories: [
+            "Real-time VFX",
+            "Niagara",
+            "Substance Designer",
+            "Maya",
+          ],
+          excerpt:
+            "A real-time VFX piece built across the full effects pipeline: textures authored in Substance Designer, the effects assembled and simulated with Niagara in Unreal Engine, and the supporting motion animated in Maya. The breakdown below walks through each effect.",
+        },
+        hero: {
+          title: "VFX showreel",
+          provider: "youtube",
+          id: "EAfYrcvPUNY",
+        },
+        sections: [
+          {
+            slug: "vfx-overview",
+            heading: "Planning",
+            ornament: "",
+            paragraphs: [
+              "For this project I created a melee-combat-focused set of VFX and animations. I owned the whole effects pipeline end to end — authoring my own textures in Substance Designer, building the effects in Niagara, and animating the supporting motion in Maya.",
+              "I planned the moveset and the effects each move would need: Idle (no VFX); Charge Up (energy gathering particles, energy burst particles, and a ring cloud burst); Punch Combo (hit impact and punch trail); and Kick (gather energy as the kick starts, plus a ground slam and AoE burst effect).",
+            ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "punch-combo-vfx",
+            heading: "Punch Combo VFX",
+            ornament: "",
+            paragraphs: [
+              "I first created the textures in Substance Designer for the punch trail, flash, impact ring, and a noise texture.",
+              "In Niagara I built a trail material where I can control the fade and emissive effect, and a separate flash material. I went for a purple-and-black finish on the VFX to match the character concept — it blends in well with the character.",
+              "I call the VFX through anim notifies: the trail VFX is attached to the finger bone, and for the flash effect I turned on local space in the properties so it doesn't follow the trail and only appears once. For the impact effect, I spawn it at a specific location using notifies.",
+            ],
+            mediaGrid: [
+              {
+                title: "Animation & final in-engine result",
+                items: [
+                  {
+                    src: "img/vfx/punch_combo_anim.gif",
+                    alt: "Punch combo animation in Maya",
+                    caption: "Punch combo (Maya animation)",
+                  },
+                  {
+                    src: "img/vfx/punch_combo_final.gif",
+                    alt: "Punch combo with trail and flash VFX in Unreal",
+                    caption: "In-engine with trail + flash VFX",
+                  },
+                ],
+              },
+              {
+                title: "Substance Designer textures",
+                items: [
+                  {
+                    src: "img/vfx/punch_tex_trail.png",
+                    alt: "Punch trail texture graph in Substance Designer",
+                    caption: "Trail",
+                  },
+                  {
+                    src: "img/vfx/punch_tex_flash.png",
+                    alt: "Flash texture graph in Substance Designer",
+                    caption: "Flash",
+                  },
+                  {
+                    src: "img/vfx/punch_tex_ring.png",
+                    alt: "Impact ring texture graph in Substance Designer",
+                    caption: "Impact ring",
+                  },
+                  {
+                    src: "img/vfx/punch_tex_noise.png",
+                    alt: "Noise texture graph in Substance Designer",
+                    caption: "Noise",
+                  },
+                ],
+              },
+              {
+                title: "Niagara materials",
+                items: [
+                  {
+                    src: "img/vfx/punch_mat_trail.png",
+                    alt: "Trail material graph in Unreal",
+                    caption: "Trail material",
+                  },
+                  {
+                    src: "img/vfx/punch_mat_flash.png",
+                    alt: "Flash material graph in Unreal",
+                    caption: "Flash material",
+                  },
+                  {
+                    src: "img/vfx/punch_mat_ring.png",
+                    alt: "Impact ring material graph in Unreal",
+                    caption: "Impact ring material",
+                  },
+                ],
+              },
+              {
+                title: "Niagara systems",
+                items: [
+                  {
+                    src: "img/vfx/punch_ns_trail.png",
+                    alt: "Punch trail Niagara system",
+                    caption: "NS_PunchTrail",
+                  },
+                  {
+                    src: "img/vfx/punch_ns_impact.png",
+                    alt: "Impact Niagara system",
+                    caption: "NS_Impact",
+                  },
+                ],
+              },
+            ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "chargeup-vfx",
+            heading: "Charge-up VFX",
+            ornament: "",
+            paragraphs: [
+              "I first created a wave ring effect in Substance Designer.",
+              "Then I made a material in Unreal with the same cut-out effect as my impact ring.",
+              "After creating the material I built the Niagara systems: energy gathering particles and the energy burst using basic sprites, and the ring burst using the wave ring material I created.",
+            ],
+            mediaGrid: [
+              {
+                title: "Animation & final in-engine result",
+                items: [
+                  {
+                    src: "img/vfx/charge_anim.gif",
+                    alt: "Charge-up animation in Maya",
+                    caption: "Charge-up (Maya animation)",
+                  },
+                  {
+                    src: "img/vfx/charge_final.gif",
+                    alt: "Charge-up with full VFX in Unreal",
+                    caption: "In-engine with full VFX",
+                  },
+                ],
+              },
+              {
+                title: "Substance Designer & material",
+                items: [
+                  {
+                    src: "img/vfx/charge_tex_ring.png",
+                    alt: "Wave ring texture graph in Substance Designer",
+                    caption: "Wave ring (Substance)",
+                  },
+                  {
+                    src: "img/vfx/charge_mat_ring.png",
+                    alt: "Ring material with cut-out effect in Unreal",
+                    caption: "Ring material (cut-out)",
+                  },
+                ],
+              },
+              {
+                title: "Niagara systems",
+                items: [
+                  {
+                    src: "img/vfx/charge_ns_gather.png",
+                    alt: "NS_GatherEnergy Niagara system",
+                    caption: "NS_GatherEnergy",
+                  },
+                  {
+                    src: "img/vfx/charge_ns_burst.png",
+                    alt: "NS_EnergyBurst Niagara system",
+                    caption: "NS_EnergyBurst",
+                  },
+                  {
+                    src: "img/vfx/charge_ns_ringburst.png",
+                    alt: "NS_RingBurst Niagara system",
+                    caption: "NS_RingBurst",
+                  },
+                ],
+              },
+            ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "groundslam-vfx",
+            heading: "Ground Slam VFX",
+            ornament: "",
+            paragraphs: [
+              "I made a burn mask ground effect in Substance Designer.",
+              "Then I created a material in Unreal that has a fade effect.",
+              "After that I made the ground fade effect using the systems I'd made before, plus a separate flash effect for the legs using the flash material I made previously. I also made a trail effect for the legs the same way I did for the arms in the punch combo.",
+            ],
+            mediaGrid: [
+              {
+                title: "Animation & final in-engine result",
+                items: [
+                  {
+                    src: "img/vfx/slam_anim.gif",
+                    alt: "Ground slam animation in Maya",
+                    caption: "Ground slam (Maya animation)",
+                  },
+                  {
+                    src: "img/vfx/slam_final.gif",
+                    alt: "Ground slam with full VFX in Unreal",
+                    caption: "In-engine with full VFX",
+                  },
+                ],
+              },
+              {
+                title: "Substance Designer & material",
+                items: [
+                  {
+                    src: "img/vfx/slam_tex_burnmask.png",
+                    alt: "Burn mask texture graph in Substance Designer",
+                    caption: "Burn mask (Substance)",
+                  },
+                  {
+                    src: "img/vfx/slam_mat_burnmask.png",
+                    alt: "Ground burn material with fade effect in Unreal",
+                    caption: "Ground burn material (fade)",
+                  },
+                ],
+              },
+              {
+                title: "Niagara systems",
+                items: [
+                  {
+                    src: "img/vfx/slam_ns_groundslam.png",
+                    alt: "NS_GroundSlam Niagara system",
+                    caption: "NS_GroundSlam",
+                  },
+                  {
+                    src: "img/vfx/slam_ns_flash.png",
+                    alt: "NS_Flash Niagara system for the legs",
+                    caption: "NS_Flash (legs)",
+                  },
+                  {
+                    src: "img/vfx/slam_ns_energybuildup.png",
+                    alt: "NS_EnergyBuildup Niagara system for the leg trail",
+                    caption: "NS_EnergyBuildup (leg trail)",
+                  },
+                ],
+              },
+            ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+        ],
+        thanks: {
+          heading: "Credits",
+          ornament: "",
+          items: [
+            {
+              name: "Paragon: Gideon (Epic Games)",
+              detail: "character — rigged base mesh used under the Paragon license. All VFX, materials, and animation in this project are my own work.",
+              url: "",
+            },
+          ],
+        },
+        tags: [
+          "Real-time VFX",
+          "Niagara",
+          "Unreal Engine 5",
+          "Substance Designer",
+          "Maya",
+        ],
+      },
     ],
   },
   gamesHub: {
@@ -681,14 +968,13 @@ window.PORTFOLIO_CONFIG = {
   about: {
     pageTitle: "About",
     metaDescription:
-      "About me — animation background, tools, and how to get in touch.",
+      "About me — 3D gameplay animator working across Maya and Unreal Engine.",
     portraitImage: "",
     portraitAlt: "",
     heading: "About me",
-    lead: "I’m a student animator focused on combat and gameplay motion in real-time engines.",
+    lead: "I’m a 3D gameplay animator specializing in creating high-quality, expressive character animations and integrating them seamlessly into real-time engines.",
     paragraphs: [
-      "Edit this page with your story: training, favorite references, and what you want to work on next.",
-      "Keep it concise — recruiters skim. Pair with your reel on the Portfolio page.",
+      "I love bridging the gap between artistic performance and technical implementation, ensuring that every movement is both visually polished and highly responsive to player input.",
     ],
     skills: ["Autodesk Maya", "Unreal Engine 5", "Gameplay animation"],
   },
