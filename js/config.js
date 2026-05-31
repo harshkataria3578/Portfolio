@@ -16,7 +16,7 @@ window.PORTFOLIO_CONFIG = {
     reel: {
       title: "Showreel",
       provider: "youtube",
-      id: "_pvvrN6xMog",
+      id: "hNaZGth9hnc",
     },
     hubTitle: "Portfolio",
     worksHeading: "Portfolio pieces",
@@ -47,12 +47,12 @@ window.PORTFOLIO_CONFIG = {
             "Maya",
           ],
           excerpt:
-            "A student combat artefact that merges the deliberate weight of Souls-like encounters with the responsive, combo-friendly feel of hack-and-slash action. Built in UE5 with Animation Blueprints, montages, AI behaviour trees, and a full Maya-to-engine animation pipeline — gameplay and motion are shown in the video above.",
+            "A student combat artefact that merges the deliberate weight of Souls-like encounters with the responsive, combo-friendly feel of hack-and-slash action. Built in UE5 with Animation Blueprints, montages, AI behaviour trees, and a full Maya-to-engine animation pipeline — gameplay and motion are shown in the video below.",
         },
         hero: {
           title: "Gameplay showcase — hybrid combat prototype",
           provider: "youtube",
-          id: "dQw4w9WgXcQ",
+          id: "9lrAbXO09fw",
         },
         sections: [
           {
@@ -123,8 +123,8 @@ window.PORTFOLIO_CONFIG = {
             heading: "Player Animations",
             ornament: "",
             paragraphs: [
-              "I used the references linked below (greatsword swings, finisher beats, and attack timing from YouTube collections) to animate the player in Maya. The GIFs further down are animations I made in Maya — currently the locomotion cycles and the light attack chain.",
-              "The remaining player animations are still being added: heavy attack combo, charged attack, dodge, hit reacts, death, and finisher. I'll upload those and update the GIFs here later.",
+              "I used the references linked below (greatsword swings, finisher beats, and attack timing from YouTube collections) to animate the player in Maya. The GIFs further down are all animations I made in Maya.",
+              "The full moveset covers locomotion (idle, walk, run, walk stop, run stop), light and heavy attack chains, the charged attack, dodge, directional hit reactions, death, and the finisher. Click any clip to view it fullscreen.",
             ],
             referenceLinks: [
               {
@@ -143,8 +143,7 @@ window.PORTFOLIO_CONFIG = {
             mediaGrid: [
               {
                 title: "Locomotion cycles",
-                intro:
-                  "Idle, walk, run, and stops — excerpted from the report’s player animation board.",
+                intro: "Locomotion.",
                 items: [
                   {
                     src: "img/hybrid-report/image5.gif",
@@ -152,12 +151,12 @@ window.PORTFOLIO_CONFIG = {
                     caption: "Idle",
                   },
                   {
-                    src: "img/hybrid-report/image6.gif",
+                    src: "img/hybrid-report/walk.gif",
                     alt: "Walk",
                     caption: "Walk",
                   },
                   {
-                    src: "img/hybrid-report/image7.gif",
+                    src: "img/hybrid-report/run.gif",
                     alt: "Run",
                     caption: "Run",
                   },
@@ -175,27 +174,107 @@ window.PORTFOLIO_CONFIG = {
               },
               {
                 title: "Light attack chain",
-                intro: "First four steps of the light combo (report slide).",
+                intro: "Four-step light combo.",
                 items: [
                   {
-                    src: "img/hybrid-report/image10.gif",
+                    src: "img/hybrid-report/la1.gif",
                     alt: "Light attack 1",
-                    caption: "Light 1",
+                    caption: "LA1",
                   },
                   {
-                    src: "img/hybrid-report/image11.gif",
+                    src: "img/hybrid-report/la2.gif",
                     alt: "Light attack 2",
-                    caption: "Light 2",
+                    caption: "LA2",
                   },
                   {
-                    src: "img/hybrid-report/image12.gif",
+                    src: "img/hybrid-report/la3.gif",
                     alt: "Light attack 3",
-                    caption: "Light 3",
+                    caption: "LA3",
                   },
                   {
-                    src: "img/hybrid-report/image13.gif",
+                    src: "img/hybrid-report/la4.gif",
                     alt: "Light attack 4",
-                    caption: "Light 4",
+                    caption: "LA4",
+                  },
+                ],
+              },
+              {
+                title: "Heavy attack chain",
+                intro: "Three-step heavy combo.",
+                items: [
+                  {
+                    src: "img/hybrid-report/ha1.gif",
+                    alt: "Heavy attack 1",
+                    caption: "HA1",
+                  },
+                  {
+                    src: "img/hybrid-report/ha2.gif",
+                    alt: "Heavy attack 2",
+                    caption: "HA2",
+                  },
+                  {
+                    src: "img/hybrid-report/ha3.gif",
+                    alt: "Heavy attack 3",
+                    caption: "HA3",
+                  },
+                ],
+              },
+              {
+                title: "Charged attack",
+                intro: "Charge start and charged attack.",
+                items: [
+                  {
+                    src: "img/hybrid-report/ca.gif",
+                    alt: "Charge start",
+                    caption: "CS",
+                  },
+                  {
+                    src: "img/hybrid-report/cs.gif",
+                    alt: "Charged attack",
+                    caption: "CA",
+                  },
+                ],
+              },
+              {
+                title: "Dodge",
+                intro: "Evasive dodge.",
+                items: [
+                  {
+                    src: "img/hybrid-report/dodge.gif",
+                    alt: "Dodge",
+                    caption: "Dodge",
+                  },
+                ],
+              },
+              {
+                title: "Hit reacts & death",
+                intro: "Directional hit reactions and the death animation.",
+                items: [
+                  {
+                    src: "img/hybrid-report/hit_react_left.gif",
+                    alt: "Hit react left",
+                    caption: "Hit react (left)",
+                  },
+                  {
+                    src: "img/hybrid-report/hit_react_right.gif",
+                    alt: "Hit react right",
+                    caption: "Hit react (right)",
+                  },
+                  {
+                    src: "img/hybrid-report/death.gif",
+                    alt: "Death",
+                    caption: "Death",
+                  },
+                ],
+              },
+              {
+                title: "Finisher",
+                intro: "Special finisher / execution.",
+                items: [
+                  {
+                    src: "img/hybrid-report/finisher.gif",
+                    alt: "Finisher",
+                    caption: "Finisher",
                   },
                 ],
               },
@@ -206,45 +285,139 @@ window.PORTFOLIO_CONFIG = {
             tech: [],
           },
           {
-            slug: "ue-learning",
-            heading: "Unreal Engine — combat architecture foundation",
+            slug: "enemy-animations",
+            heading: "Enemy Animations",
             ornament: "",
             paragraphs: [
-              "Implementation learning included a structured UE5 third-person combat tutorial series that covered how to layer Animation Blueprints, montages, notifies, and character Blueprint calls into a single playable loop. That foundation was extended with project-specific rules for stamina, targeting, and AI-driven opponents.",
+              "The enemy's moveset was animated in Maya. Click any clip to view it fullscreen.",
+            ],
+            mediaGrid: [
+              {
+                title: "Locomotion cycles",
+                intro: "Locomotion.",
+                items: [
+                  {
+                    src: "img/hybrid-report/enemy_idle.gif",
+                    alt: "Enemy idle",
+                    caption: "Idle",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_chase.gif",
+                    alt: "Enemy chase",
+                    caption: "Chase",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_strafe.gif",
+                    alt: "Enemy strafe",
+                    caption: "Strafe",
+                  },
+                ],
+              },
+              {
+                title: "Attack variants",
+                intro: "Two attack variants.",
+                items: [
+                  {
+                    src: "img/hybrid-report/enemy_attack1.gif",
+                    alt: "Enemy attack 1",
+                    caption: "Attack 1",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_attack2.gif",
+                    alt: "Enemy attack 2",
+                    caption: "Attack 2",
+                  },
+                ],
+              },
+              {
+                title: "Hit reacts & death",
+                intro: "Directional hit reactions and the death animation.",
+                items: [
+                  {
+                    src: "img/hybrid-report/enemy_hrl.gif",
+                    alt: "Enemy hit react left",
+                    caption: "Hit react (left)",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_hrr.gif",
+                    alt: "Enemy hit react right",
+                    caption: "Hit react (right)",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_hrk.gif",
+                    alt: "Enemy hit react knockback",
+                    caption: "Hit react (knockback)",
+                  },
+                  {
+                    src: "img/hybrid-report/enemy_death.gif",
+                    alt: "Enemy death",
+                    caption: "Death",
+                  },
+                ],
+              },
             ],
             embed: null,
             afterEmbedParagraphs: [],
             bts: null,
-            tech: [
+            tech: [],
+          },
+          {
+            slug: "unreal-implementation",
+            heading: "Unreal Implementation — Combat System",
+            ornament: "",
+            paragraphs: [
+              "I watched a structured UE5 third-person combat tutorial series to help me build the combat system in Unreal Engine. The playlist covered targeting, soft-lock, AI opponents, finisher logic, hit reactions, and the rest of the gameplay systems wiring — I used it as reference and then implemented and adapted those systems for this project.",
+              "On top of what the playlist covered, I designed and added the parts that weren't in it: the player Animation Blueprint state machine, a stamina system that gates actions, and the charged attack mechanic (upper-body slot so the lower body keeps moving while the charge winds).",
+            ],
+            referenceLinksPosition: "after",
+            referenceLinks: [
               {
-                title: "Combat system tutorial series",
-                caption:
-                  "Playlist followed for the core UE5 wiring shown in the development report (AnimBP structure, montages, notifies, Character BP). Still below is the slide capture from the artefact deck.",
-                image: "img/hybrid-report/image33.png",
-                imageAlt: "Unreal Engine combat tutorial reference slide",
-                link: "https://www.youtube.com/watch?v=srpHq7n9iQI&list=PL7fuubrGZdmzA_64A5n_qddbgT71w9MV-",
-                linkLabel: "Open playlist on YouTube",
-              },
-              {
-                title: "AnimBP vs montages (project split)",
-                caption:
-                  "Locomotion and continuous states live in the Animation Blueprint; attacks, hit reactions, dodge, finisher, and death play as montages driven from the character Blueprint with anim notifies firing gameplay logic.",
-                image: "",
+                label: "Combat system tutorial series (YouTube playlist)",
+                url: "https://www.youtube.com/watch?v=srpHq7n9iQI&list=PL7fuubrGZdmzA_64A5n_qddbgT71w9MV-",
               },
             ],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "player-implementation",
+            heading: "Player Implementation — State Machines & Logic",
+            ornament: "",
+            paragraphs: [
+              "Engine & architecture: Unreal Engine 5 (UE5).",
+              "I built the player Animation Blueprint state machine myself to manage locomotion: idle, walk, run, walk stop, run stop, jump, and fall transitions all wired up in the AnimBP graph shown below.",
+              "Everything else plays through montages: attacks, hit reacts, dodge, finisher, and death. The gameplay functions are created in the Character Blueprint and triggered from the montages through anim notifies.",
+            ],
+            mediaGrid: {
+              title: "Player AnimBP state machine (my work)",
+              items: [
+                {
+                  src: "img/hybrid-report/image33.png",
+                  alt: "Player AnimBP locomotion state machine",
+                  caption: "Locomotion state machine (AnimBP)",
+                },
+              ],
+            },
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
           },
           {
             slug: "player-systems",
             heading: "Player systems & logic",
             ornament: "",
             paragraphs: [
-              "Light and heavy ladders use anim notifies to advance or reset combos and to steer rotation during anticipation. Dodge is gated so it only fires after an attack finishes, preserving commitment while still offering escape windows; dodge includes invincibility frames.",
-              "Charged attacks use an upper-body animation slot so the lower body can keep moving while the charge winds. A stamina stat gates actions that need it, keeping resource tension aligned with the Souls-like pillar of the design.",
+              "Light and heavy attacks use anim notifies to advance or reset combos and to steer rotation during anticipation. Dodge is gated so it only fires after an attack finishes, preserving commitment while still offering escape windows; dodge includes invincibility frames.",
+              "Charged attacks use an upper-body animation slot so the lower body can keep moving while the charge winds. A stamina stat gates actions that need it, so players have to manage their stamina like in Souls-like games.",
             ],
             referenceLinksPosition: "after",
+            referenceLinksHeading: "Mechanic showcase videos while in development",
             referenceLinks: [
               {
-                label: "Light attack & dodge mechanic (capture walkthrough)",
+                label: "Light attack & dodge mechanic",
                 url: "https://youtu.be/BK8TcOFWYV8",
               },
               {
@@ -276,13 +449,13 @@ window.PORTFOLIO_CONFIG = {
                 },
                 {
                   src: "img/hybrid-report/image37.png",
-                  alt: "Charged attack upper body slot",
-                  caption: "Charged attack",
+                  alt: "Charge start anticipation",
+                  caption: "Charge start",
                 },
                 {
                   src: "img/hybrid-report/image38.png",
-                  alt: "Stamina stat wiring",
-                  caption: "Stamina",
+                  alt: "Charged attack release",
+                  caption: "Charged attack",
                 },
               ],
             },
@@ -296,28 +469,29 @@ window.PORTFOLIO_CONFIG = {
             heading: "Enemy systems & logic",
             ornament: "",
             paragraphs: [
-              "Enemies mirror the split architecture: Animation Blueprints handle locomotion and death states, while montages carry attacks, hit reactions, and execution moments with notifies calling into a shared enemy base Blueprint.",
-              "Directional hit reactions vary with attack type; the enemy reorients toward the player on hit. Health drives when UI elements appear—widgets only show while the player is inside engagement range.",
-              "A targeting and soft-lock layer drops lock when the player is out of range, keeps the camera constrained while locked, and rotates the player toward the tracked foe for readable engagements.",
-              "Finishers require low enemy health, close range, and alignment: the enemy turns toward the player, a dedicated finisher camera boosts intensity, and the state grants invincibility frames so the beat resolves cleanly.",
-              "AI runs through Behaviour Trees and an AI controller: pursue the player, strafe to a random orbit, attack, then relocate before repeating. A spawner controls enemy counts. An overlay material flashes on attack telegraphs so players get a fair reaction window.",
+              "Animation Blueprints (AnimBP) manage the enemy's locomotion and death. Everything else plays through montages — attacks, hit reactions, and execution. The gameplay functions are created in the Base EnemyBP and triggered from the montages through anim notifies.",
+              "Hit react & death — I added different hit reactions for different attacks, and the enemy rotates toward the player on hit. I also added a health system for the enemy, and the UI only appears when the player is in range.",
+              "Targeting & soft lock — I added a targeting system, and if the player is out of range it stops targeting and the camera unlocks. I also added a soft lock so the player rotates toward whichever enemy they're looking at.",
+              "Finisher / execution — the finisher only plays when the enemy's health is low, the player is in range, and the enemy turns toward the player. I added a finisher camera to make it feel more intense, and this state has invincibility frames so the moment resolves cleanly.",
+              "Enemy AI & spawner — I set up the enemy AI using a behaviour tree and an AI controller, then created a spawner where I can control how many enemies spawn. The AI logic: the enemy goes toward the player, strafes in a random spot around the player, attacks, then moves to another random spot to strafe and wait. I added an overlay material that flashes when the enemy attacks so the player has time to react.",
             ],
             referenceLinksPosition: "after",
+            referenceLinksHeading: "Mechanic showcase videos while in development",
             referenceLinks: [
               {
-                label: "Enemy damage, hit react & UI range",
+                label: "Enemy damage mechanic",
                 url: "https://youtu.be/zejEFXykQBk",
               },
               {
-                label: "Targeting & soft lock",
+                label: "Targeting and soft lock system",
                 url: "https://youtu.be/UPpRlvW1h5A",
               },
               {
-                label: "Finisher / execution",
+                label: "Finisher / execution mechanic",
                 url: "https://youtu.be/zK4F95EKb9k",
               },
               {
-                label: "Enemy AI & behaviour tree",
+                label: "Enemy AI system",
                 url: "https://youtu.be/UgGz2QPRgHA",
               },
             ],
@@ -326,23 +500,23 @@ window.PORTFOLIO_CONFIG = {
               items: [
                 {
                   src: "img/hybrid-report/image39.png",
-                  alt: "Enemy montages and base blueprint",
-                  caption: "Montages / base BP",
+                  alt: "Enemy BP",
+                  caption: "Enemy BP",
                 },
                 {
                   src: "img/hybrid-report/image40.png",
-                  alt: "Hit react and health UI",
-                  caption: "Hit react & UI",
+                  alt: "Hit react",
+                  caption: "Hit react",
                 },
                 {
                   src: "img/hybrid-report/image41.png",
-                  alt: "Targeting camera and soft lock",
-                  caption: "Targeting",
+                  alt: "Finisher",
+                  caption: "Finisher",
                 },
                 {
                   src: "img/hybrid-report/image42.png",
-                  alt: "Finisher sequence",
-                  caption: "Finisher",
+                  alt: "Execution",
+                  caption: "Execution",
                 },
                 {
                   src: "img/hybrid-report/image43.png",
@@ -358,127 +532,67 @@ window.PORTFOLIO_CONFIG = {
           },
           {
             slug: "scene-systems",
-            heading: "Environment, VFX, lighting & respawn",
+            heading: "VFX, Environment & Respawn System",
             ornament: "",
             paragraphs: [
-              "The arena uses curated environment art, VFX, and lighting to sell an ancient combat space that matches the fantasy of the characters instead of reading as a greybox. A respawn system resets the player after death so iteration stays fast during combat tuning — aligned with the ambience and respawn notes in the development report.",
+              "I've added environment, VFX, lighting and a respawn system. I've downloaded some assets and made this scene a cohesive ancient arena environment built to amplify the player–enemy fantasy and overall game feel. Every environmental choice and VFX, from layout to material detail, is intentionally aligned to match the tone of the characters and enemies, to make it feel like a natural extension of their world rather than just a backdrop for gameplay.",
             ],
             referenceLinksPosition: "after",
+            referenceLinksHeading: "Mechanic showcase videos while in development",
             referenceLinks: [
               {
-                label: "VFX, environment & respawn (capture)",
+                label: "VFX, environment & respawn",
                 url: "https://youtu.be/uqMdYPPcY0k",
               },
             ],
             mediaGrid: {
-              title: "Scene passes (report stills)",
+              title: "",
               items: [
                 {
                   src: "img/hybrid-report/image44.png",
                   alt: "Arena layout",
-                  caption: "Arena",
                 },
                 {
                   src: "img/hybrid-report/image45.png",
                   alt: "Materials and dressing",
-                  caption: "Materials",
                 },
                 {
                   src: "img/hybrid-report/image46.png",
                   alt: "Lighting",
-                  caption: "Lighting",
                 },
                 {
                   src: "img/hybrid-report/image47.png",
                   alt: "VFX elements",
-                  caption: "VFX",
                 },
                 {
                   src: "img/hybrid-report/image48.png",
                   alt: "Respawn flow",
-                  caption: "Respawn",
                 },
               ],
             },
-            embed: null,
-            afterEmbedParagraphs: [],
-            bts: null,
-            tech: [],
-          },
-          {
-            slug: "technical-challenges",
-            heading: "Technical challenges & solutions",
-            ornament: "",
-            paragraphs: [
-              "Enemy AI occasionally locked inside strafe animations while chasing; the fix was to correct how the Behaviour Tree service refreshed animation state so blends stayed in sync with locomotion intent.",
-              "Charged attacks were originally intended to share a hold-to-charge binding with heavy attacks; when that input layering proved unreliable, a dedicated input channel was introduced so charge remained dependable.",
-              "Destroying the player pawn on death broke downstream UI updates even though damage still registered; respawn instead resets health and teleports the character back to the start so widgets and attributes stay bound to a persistent actor.",
-            ],
-            mediaGrid: {
-              title: "Playtest notes (report)",
-              intro:
-                "Snapshots from polishing & testing slides: issues called out during playtests before iteration.",
-              items: [
-                {
-                  src: "img/hybrid-report/image49.png",
-                  alt: "Playtest feedback notes 1",
-                  caption: "Notes",
-                },
-                {
-                  src: "img/hybrid-report/image50.png",
-                  alt: "Playtest feedback notes 2",
-                  caption: "Notes",
-                },
-                {
-                  src: "img/hybrid-report/image51.png",
-                  alt: "Playtest feedback notes 3",
-                  caption: "Notes",
-                },
-                {
-                  src: "img/hybrid-report/image52.png",
-                  alt: "Playtest feedback notes 4",
-                  caption: "Notes",
-                },
-              ],
-            },
-            embed: null,
-            afterEmbedParagraphs: [],
-            bts: null,
-            tech: [],
-          },
-          {
-            slug: "gameplay-video",
-            heading: "Gameplay & motion on video",
-            ornament: "",
-            paragraphs: [
-              "Combat animations, enemy behaviours, and finisher moments are demonstrated in the gameplay video at the top of this page rather than as frame-by-frame breakdowns here.",
-            ],
             embed: null,
             afterEmbedParagraphs: [],
             bts: null,
             tech: [],
           },
         ],
-        finalThoughts: {
-          heading: "Outcome",
-          ornament: "",
-          paragraphs: [
-            "The artefact delivers a playable hybrid combat loop: Souls-like commitment (stamina, recovery, I-frames, execution rules) working alongside hack-and-slash flow (combos, buffering, camera-assisted targeting).",
-            "It establishes a solid technical and design foundation in UE5; further scope can build on this prototype without redoing the core systems architecture.",
-          ],
-        },
         thanks: {
           heading: "Credits",
           ornament: "",
           items: [
             {
-              name: "Staffordshire University — Showcase",
-              detail: "artefact submission & brief.",
+              name: "Paragon: Kwang (Epic Games)",
+              detail: "player character — rigged base mesh used under the Paragon license.",
               url: "",
             },
             {
-              name: "Character rigs & marketplace assets",
-              detail: "base meshes, environment packs, and reference material used under their licenses.",
+              name: "Paragon: Minions (Epic Games)",
+              detail: "enemy character — rigged base mesh used under the Paragon license.",
+              url: "",
+            },
+            {
+              name: "Ancient Temple Ruins — Modular Environment (Rasmus Bagner)",
+              detail: "arena environment pack used to dress the combat scene.",
               url: "",
             },
           ],
@@ -579,9 +693,8 @@ window.PORTFOLIO_CONFIG = {
     skills: ["Autodesk Maya", "Unreal Engine 5", "Gameplay animation"],
   },
   links: {
-    artstation: "https://www.artstation.com/",
-    linkedin: "https://www.linkedin.com/",
-    email: "mailto:you@example.com",
+    linkedin: "https://www.linkedin.com/in/harsh-kataria-032501144",
+    email: "mailto:harshkataria3578@gmail.com",
   },
   fx: {
     lottieUrl: "",

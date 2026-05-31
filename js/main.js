@@ -585,7 +585,7 @@
       .join("");
   }
 
-  function renderReferenceLinks(links) {
+  function renderReferenceLinks(links, headingOverride) {
     if (!links || !links.length) return "";
     const items = links
       .filter((x) => x && x.url && String(x.url).trim())
@@ -595,9 +595,13 @@
       )
       .join("");
     if (!items) return "";
+    const heading =
+      headingOverride && String(headingOverride).trim()
+        ? String(headingOverride).trim()
+        : "Links & references";
     return `
       <div class="reference-links mt-8 border-t border-outline-variant/20 pt-6">
-        <h3 class="reference-links-heading mb-4 text-xs font-bold uppercase tracking-widest text-zinc-500">Links & references</h3>
+        <h3 class="reference-links-heading mb-4 text-xs font-bold uppercase tracking-widest text-zinc-500">${escapeHtml(heading)}</h3>
         <ul class="reference-links-list m-0 list-none space-y-3 p-0">${items}</ul>
       </div>
     `;
@@ -646,7 +650,10 @@
       html += `<p class="ornament mb-6 text-center font-label text-[10px] uppercase tracking-[0.35em] text-on-surface/35" aria-hidden="true">${escapeHtml(sec.ornament)}</p>`;
     }
     html += `<div class="prose mb-6">${renderParagraphs(sec.paragraphs)}</div>`;
-    const linkBlock = renderReferenceLinks(sec.referenceLinks);
+    const linkBlock = renderReferenceLinks(
+      sec.referenceLinks,
+      sec.referenceLinksHeading
+    );
     const mediaGrids = Array.isArray(sec.mediaGrid)
       ? sec.mediaGrid
       : sec.mediaGrid
@@ -778,7 +785,6 @@
   function setContactLinks() {
     const L = cfg.links || {};
     [
-      ["link-artstation", L.artstation],
       ["link-linkedin", L.linkedin],
       ["link-email", L.email],
     ].forEach(([id, href]) => {
@@ -1303,11 +1309,80 @@
     bindInPageHashLinks();
   }
 
+  function initLightbox() {
+    let box = null;
+    let imgEl = null;
+    let capEl = null;
+    let lastFocus = null;
+
+    function ensureBox() {
+      if (box) return;
+      box = document.createElement("div");
+      box.className = "lightbox";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-modal", "true");
+      box.hidden = true;
+      box.innerHTML = `
+        <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+        <img class="lightbox-img" alt="" />
+        <p class="lightbox-cap" aria-hidden="true"></p>`;
+      document.body.appendChild(box);
+      imgEl = box.querySelector(".lightbox-img");
+      capEl = box.querySelector(".lightbox-cap");
+      box.addEventListener("click", (e) => {
+        if (e.target === imgEl) return;
+        close();
+      });
+    }
+
+    function open(src, alt, caption) {
+      ensureBox();
+      lastFocus = document.activeElement;
+      imgEl.src = src;
+      imgEl.alt = alt || "";
+      if (caption) {
+        capEl.textContent = caption;
+        capEl.style.display = "";
+      } else {
+        capEl.textContent = "";
+        capEl.style.display = "none";
+      }
+      box.hidden = false;
+      document.body.style.overflow = "hidden";
+      const closeBtn = box.querySelector(".lightbox-close");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      if (!box || box.hidden) return;
+      box.hidden = true;
+      imgEl.src = "";
+      document.body.style.overflow = "";
+      if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+    }
+
+    document.addEventListener("click", (e) => {
+      const img = e.target.closest(".media-grid-img");
+      if (!img) return;
+      if (e.target.closest("a")) return;
+      e.preventDefault();
+      const cap = img
+        .closest(".media-grid-cell")
+        ?.querySelector(".media-grid-cap")?.textContent;
+      open(img.currentSrc || img.src, img.alt, cap || img.alt);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  }
+
   initLogoBrand();
   initSiteNav();
   setContactLinks();
   setFooter();
   shareLink();
+  initLightbox();
 
   if (page === "hub-portfolio") {
     initHubPortfolio();

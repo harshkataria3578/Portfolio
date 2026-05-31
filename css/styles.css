@@ -88,15 +88,86 @@ body[data-detail-slug="sample-team-project"] iframe {
 }
 
 .media-grid-img {
-  max-height: 14rem;
   width: 100%;
-  object-fit: contain;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
   object-position: center;
 }
 
 .media-grid-figure,
 .media-grid-card {
   margin: 0;
+}
+
+.media-grid-figure .media-grid-img {
+  cursor: zoom-in;
+  transition: opacity 0.2s ease;
+}
+
+.media-grid-figure .media-grid-img:hover {
+  opacity: 0.9;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(6px);
+  cursor: zoom-out;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-img {
+  max-width: 95vw;
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 24px 64px -16px rgba(0, 0, 0, 0.8);
+  cursor: default;
+}
+
+.lightbox-cap {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .skip {
