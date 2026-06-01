@@ -7,7 +7,7 @@ body {
 
 /* Detail pages: keep only section panels (no body slab) */
 body[data-detail-slug="hybrid-action-combat-system"] .article-body-live,
-body[data-detail-slug="sample-team-project"] .article-body-live {
+body[data-detail-slug="dungeon-clash"] .article-body-live {
   background: transparent !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -16,28 +16,28 @@ body[data-detail-slug="sample-team-project"] .article-body-live {
 
 /* Remove drifting grid overlay on these pages */
 body[data-detail-slug="hybrid-action-combat-system"] .article-body-live::before,
-body[data-detail-slug="sample-team-project"] .article-body-live::before {
+body[data-detail-slug="dungeon-clash"] .article-body-live::before {
   opacity: 0 !important;
 }
 
 body[data-detail-slug="hybrid-action-combat-system"] .article-section,
-body[data-detail-slug="sample-team-project"] .article-section {
+body[data-detail-slug="dungeon-clash"] .article-section {
   background: rgba(60, 74, 65, 0.10) !important;
   border-color: rgba(90, 64, 60, 0.18) !important;
 }
 
 /* Remove "big black rectangles" (video frames) so they blend */
 body[data-detail-slug="hybrid-action-combat-system"] .hero-frame,
-body[data-detail-slug="sample-team-project"] .hero-frame,
+body[data-detail-slug="dungeon-clash"] .hero-frame,
 body[data-detail-slug="hybrid-action-combat-system"] .media-frame,
-body[data-detail-slug="sample-team-project"] .media-frame {
+body[data-detail-slug="dungeon-clash"] .media-frame {
   background: rgba(60, 74, 65, 0.12) !important;
   border-color: rgba(90, 64, 60, 0.22) !important;
   box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.55);
 }
 
 body[data-detail-slug="hybrid-action-combat-system"] iframe,
-body[data-detail-slug="sample-team-project"] iframe {
+body[data-detail-slug="dungeon-clash"] iframe {
   background: transparent !important;
 }
 
@@ -95,6 +95,35 @@ body[data-detail-slug="sample-team-project"] iframe {
   object-position: center;
 }
 
+/* Video tiles (e.g. rig demos) need room — go 2-up on desktop, 1-up on mobile */
+.media-grid--video {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .media-grid--video {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.media-grid-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+}
+
+.media-grid-video[data-zoomable] {
+  cursor: zoom-in;
+  transition: opacity 0.2s ease;
+}
+
+.media-grid-video[data-zoomable]:hover {
+  opacity: 0.9;
+}
+
 .media-grid-figure,
 .media-grid-card {
   margin: 0;
@@ -128,7 +157,8 @@ body[data-detail-slug="sample-team-project"] iframe {
   display: none;
 }
 
-.lightbox-img {
+.lightbox-img,
+.lightbox-video {
   max-width: 95vw;
   max-height: 86vh;
   width: auto;
@@ -137,6 +167,7 @@ body[data-detail-slug="sample-team-project"] iframe {
   border-radius: 0.5rem;
   box-shadow: 0 24px 64px -16px rgba(0, 0, 0, 0.8);
   cursor: default;
+  background: #000;
 }
 
 .lightbox-cap {

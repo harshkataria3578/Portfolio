@@ -901,26 +901,33 @@ window.PORTFOLIO_CONFIG = {
     hubIntro: "Projects I contributed animation to — click through for details.",
     items: [
       {
-        slug: "sample-team-project",
-        listTitle: "Sample Team Project",
-        listSubtitle: "Animator · Unreal Engine 5 · 2025",
-        coverImage: "",
+        slug: "dungeon-clash",
+        slugAliases: ["sample-team-project"],
+        detailPage: "dungeon-clash.html",
+        listTitle: "Dungeon Clash",
+        listSubtitle: "Animation Lead · Unreal Engine 5 · 2026",
+        coverImage: "assets/dungeon-clash-cover.png",
         entry: {
           badge: "Team project",
-          title: "Sample Team Project",
+          title: "Dungeon Clash",
           author: "Harsh Kataria",
           authorUrl: "",
-          context: "Third-person action prototype",
-          contextUrl: "",
-          date: "2025",
-          categories: ["Gameplay", "Combat"],
+          context: "Platform fighter · Nine Lives Studio",
+          contextUrl: "https://whaled-beach.itch.io/dungeon-clash",
+          date: "2026",
+          categories: [
+            "Animation Lead",
+            "Rigging",
+            "Combat",
+            "Unreal Engine 5",
+          ],
           excerpt:
-            "Placeholder game page — replace with your shipped or school project: elevator pitch, your animation scope, and a trailer or gameplay capture.",
+            "Dungeon Clash is a 1v1 platform fighter built in Unreal Engine 5 by Nine Lives Studio at the University of Staffordshire. I was the animation lead — I rigged the playable character, handled the Unreal animation implementation, and animated most of the combat moveset.",
         },
         hero: {
           title: "Gameplay trailer",
           provider: "youtube",
-          id: "dQw4w9WgXcQ",
+          id: "DeBEx_d31W0",
         },
         sections: [
           {
@@ -928,8 +935,61 @@ window.PORTFOLIO_CONFIG = {
             heading: "Overview",
             ornament: "",
             paragraphs: [
-              "Describe the game in one paragraph: genre, team size, engine, and milestone (jam, semester game, indie release).",
-              "Clarify your role: which characters, which sets of moves, and how you collaborated with design and programming.",
+              "Dungeon Clash is a local 1v1 platform fighter — knock your opponent off the stage until they run out of lives, across handcrafted stages full of hazards. It was made by Nine Lives Studio, a team of programmers, designers, artists, and animators at the University of Staffordshire.",
+              "I led a team of three animators. We originally planned three playable characters but scoped down to one so the animations could be more polished, settling on a barbarian who dual-wields a large axe. I rigged the playable character, handled the Unreal animation implementation, and animated most of the combat moveset.",
+              "As the lead, I built the technical foundation for the character's movement. Leading three animators meant balancing production speed with each person's strengths. I built an Excel tracking sheet that categorised animations by area (locomotion vs. combat) and importance, and assigned work by skill and preference. We worked with the design team on the move list so every attack had a clear start-up, active, and recovery phase.",
+            ],
+            referenceLinks: [
+              {
+                url: "https://whaled-beach.itch.io/dungeon-clash",
+                label: "Play Dungeon Clash on itch.io",
+                note: "(2-player, controllers required)",
+              },
+            ],
+            referenceLinksHeading: "Play the game",
+            mediaGrid: [],
+            embed: null,
+            afterEmbedParagraphs: [],
+            bts: null,
+            tech: [],
+          },
+          {
+            slug: "rigging",
+            heading: "Rigging",
+            ornament: "",
+            paragraphs: [
+              "I rigged the character myself using Advanced Skeleton for the bones and control curves. For skinning I used NG Skin Tools instead of the default Advanced Skeleton skinning, which caused issues in Unreal.",
+              "I built a separate skeleton and control curve for the axe and attached it to the main rig, so the axe could be animated in Maya and behave the same in engine. With this setup I could swap the axe from one hand to the other just by keying the weight on the axe control.",
+              "Before starting the animations I tested the rig with root motion in engine to make sure everything exported and played back cleanly, then handed the updated rig off to the other animators.",
+              "Later I got the game-ready version of the model and reskinned it in Maya by copying the weights from the old mesh onto the game-ready one, then updated it in engine.",
+              "The Advanced Skeleton rig gave me IK/FK switching and squash-and-stretch for the exaggerated hit-stop and anticipation a fighter needs; NG Skin Tools handled the bulky silhouette so the mesh held up around the shoulders and hips during extreme poses; and a root-motion workflow kept the weight and travel distance of moves like the neutral combo and dash attack accurate in engine, avoiding foot sliding.",
+            ],
+            mediaGrid: [
+              {
+                title: "Rig breakdown",
+                items: [
+                  {
+                    src: "img/dungeon-clash/main-rig.mp4",
+                    video: true,
+                    caption: "Main character rig (Advanced Skeleton + NG Skin Tools)",
+                  },
+                  {
+                    src: "img/dungeon-clash/axe-rig.mp4",
+                    video: true,
+                    caption: "Axe rig — swappable between hands by keying the control weight",
+                  },
+                ],
+              },
+              {
+                title: "Root motion test in engine",
+                items: [
+                  {
+                    src: "img/dungeon-clash/root-motion-test.gif",
+                    alt: "Root motion test of the rig in Unreal Engine",
+                    caption: "Testing root motion in engine before animating",
+                  },
+                ],
+              },
             ],
             embed: null,
             afterEmbedParagraphs: [],
@@ -937,31 +997,215 @@ window.PORTFOLIO_CONFIG = {
             tech: [],
           },
           {
-            slug: "animation-scope",
-            heading: "Animation scope",
+            slug: "combat-animations",
+            heading: "Combat animations",
             ornament: "",
             paragraphs: [
-              "List what you owned: e.g. player light attacks, staggers, boss wind-ups. Mention constraints (rig, timeline, multiplayer).",
+              "I animated the neutral combo chain — NC1 (pommel smack), NC2 (kick), and NC3 (axe hit). The biggest challenge was making the axe swings feel natural with a dual-wielded weapon, so I recorded myself as reference to capture the weight and timing, leaning on anticipation, follow-through, and squash-and-stretch to sell the size of the character.",
+              "I also animated the ground attacks — side attack, up attack, and down attack — then the air attacks: neutral air, forward air, up air, and down air, plus the down special. We worked with the design team on the moveset. From this point on I used Super Smash Bros. Ultimate frame data as reference for the attack shapes and timing.",
             ],
-            embed: {
-              provider: "youtube",
-              id: "dQw4w9WgXcQ",
-              caption: "Replace with your in-game capture or montage.",
-            },
+            referenceLinks: [
+              {
+                url: "https://ultimateframedata.com/smash",
+                label: "Ultimate Frame Data",
+                note: "(attack reference)",
+              },
+            ],
+            referenceLinksHeading: "Reference",
+            mediaGrid: [
+              {
+                title: "Neutral combos",
+                items: [
+                  { src: "img/dungeon-clash/combat/nc1_l.mp4", video: true, autoplay: true, caption: "NC1 — left" },
+                  { src: "img/dungeon-clash/combat/nc1_r.mp4", video: true, autoplay: true, caption: "NC1 — right" },
+                  { src: "img/dungeon-clash/combat/nc2_l.mp4", video: true, autoplay: true, caption: "NC2 — left" },
+                  { src: "img/dungeon-clash/combat/nc2_r.mp4", video: true, autoplay: true, caption: "NC2 — right" },
+                  { src: "img/dungeon-clash/combat/nc3_l.mp4", video: true, autoplay: true, caption: "NC3 — left" },
+                  { src: "img/dungeon-clash/combat/nc3_r.mp4", video: true, autoplay: true, caption: "NC3 — right" },
+                ],
+              },
+              {
+                title: "Ground attacks",
+                items: [
+                  { src: "img/dungeon-clash/combat/sa_l.mp4", video: true, autoplay: true, caption: "Side attack — left" },
+                  { src: "img/dungeon-clash/combat/sa_r.mp4", video: true, autoplay: true, caption: "Side attack — right" },
+                  { src: "img/dungeon-clash/combat/ua_l.mp4", video: true, autoplay: true, caption: "Up attack — left" },
+                  { src: "img/dungeon-clash/combat/ua_r.mp4", video: true, autoplay: true, caption: "Up attack — right" },
+                  { src: "img/dungeon-clash/combat/da_l.mp4", video: true, autoplay: true, caption: "Down attack — left" },
+                  { src: "img/dungeon-clash/combat/da_r.mp4", video: true, autoplay: true, caption: "Down attack — right" },
+                ],
+              },
+              {
+                title: "Air attacks",
+                items: [
+                  { src: "img/dungeon-clash/combat/n_air_l.mp4", video: true, autoplay: true, caption: "Neutral air — left" },
+                  { src: "img/dungeon-clash/combat/n_air_r.mp4", video: true, autoplay: true, caption: "Neutral air — right" },
+                  { src: "img/dungeon-clash/combat/forward_air_l.mp4", video: true, autoplay: true, caption: "Forward air — left" },
+                  { src: "img/dungeon-clash/combat/forward_air_r.mp4", video: true, autoplay: true, caption: "Forward air — right" },
+                  { src: "img/dungeon-clash/combat/up_air_l.mp4", video: true, autoplay: true, caption: "Up air — left" },
+                  { src: "img/dungeon-clash/combat/up_air_r.mp4", video: true, autoplay: true, caption: "Up air — right" },
+                  { src: "img/dungeon-clash/combat/down_air_l.mp4", video: true, autoplay: true, caption: "Down air — left" },
+                  { src: "img/dungeon-clash/combat/down_air_r.mp4", video: true, autoplay: true, caption: "Down air — right" },
+                ],
+              },
+              {
+                title: "Down special",
+                items: [
+                  { src: "img/dungeon-clash/combat/ds_l.mp4", video: true, autoplay: true, caption: "Down special — left" },
+                  { src: "img/dungeon-clash/combat/ds_r.mp4", video: true, autoplay: true, caption: "Down special — right" },
+                ],
+              },
+            ],
+            embed: null,
             afterEmbedParagraphs: [],
             bts: null,
             tech: [],
           },
+          {
+            slug: "unreal-implementation",
+            heading: "Unreal implementation",
+            ornament: "",
+            paragraphs: [
+              "Once the locomotion and jump animations were done I set up the animation blueprint in engine, building the event graph and making sure everything blended and played smoothly. I created a blend space for locomotion from idle to run.",
+              "For the double jump I reused the existing double-jump input system the tech team had built. I then set up four states in the animation blueprint — Jump, Double Jump, and two Fall states — so the double jump landed cleanly without the wrong jump animation playing on the way down.",
+              "For the launch hit reacts I used the boolean the tech team created so that a launched character falls back to the fall state instead of replaying the jump.",
+            ],
+            referenceLinks: [
+              {
+                url: "https://www.youtube.com/watch?v=mzsYQL8gkvs",
+                label: "Wall cling reference",
+                note: "",
+              },
+            ],
+            referenceLinksHeading: "Reference",
+            referenceLinksPosition: "end",
+            mediaGrid: [
+              {
+                title: "Animation blueprint — state machine & transitions",
+                items: [
+                  {
+                    src: "img/dungeon-clash/anim-bp-state-machine.png",
+                    alt: "Animation blueprint state machine — Jump, FallLoop, DoubleJump, Fall, Locomotion",
+                    caption: "State machine — Jump, FallLoop, DoubleJump, Fall, Locomotion",
+                  },
+                  {
+                    src: "img/dungeon-clash/anim-bp-jump-to-doublejump.png",
+                    alt: "Transition condition: Jump Current Count greater than 1",
+                    caption: "Jump → Double Jump (Jump Count > 1)",
+                  },
+                  {
+                    src: "img/dungeon-clash/anim-bp-jump-to-fall.png",
+                    alt: "Transition condition: IsFalling AND time remaining less than 0.6 OR IsKnockedBack",
+                    caption: "Jump / Double Jump → Fall (incl. launch hit-react boolean)",
+                  },
+                ],
+              },
+            ],
+            embed: null,
+            afterEmbedParagraphs: [
+              "Last I animated a wall cling and wired it into the state machine. I reused the wall-detection system the tech team had built and called the booleans I needed, so the cling state only plays when the character is actually touching a wall, not just jumping. It took a couple of passes: at first it only triggered after a normal jump, so I rerouted the double-jump fall state through wall cling; then I added a condition so that moving off the wall without jumping correctly returns to the fall state.",
+            ],
+            afterEmbedMediaGrid: [
+              {
+                title: "Wall cling — animation",
+                items: [
+                  {
+                    src: "img/dungeon-clash/combat/wc_l.mp4",
+                    video: true,
+                    autoplay: true,
+                    caption: "Wall cling — left",
+                  },
+                  {
+                    src: "img/dungeon-clash/combat/wc_r.mp4",
+                    video: true,
+                    autoplay: true,
+                    caption: "Wall cling — right",
+                  },
+                ],
+              },
+              {
+                title: "Wall cling — state machine & transitions",
+                items: [
+                  {
+                    src: "img/dungeon-clash/anim-bp-state-machine-final.png",
+                    alt: "Final animation blueprint state machine including the WallCling state",
+                    caption: "Final state machine with Wall Cling integrated",
+                  },
+                  {
+                    src: "img/dungeon-clash/wallcling-enter.png",
+                    alt: "Transition condition into Wall Cling: Trace Hit Wall AND Can Jump",
+                    caption: "Into Wall Cling (Trace Hit Wall AND Can Jump)",
+                  },
+                  {
+                    src: "img/dungeon-clash/wallcling-exit.png",
+                    alt: "Transition condition out of Wall Cling: NOT Trace Hit Wall AND IsFalling",
+                    caption: "Out of Wall Cling (no longer touching wall AND falling)",
+                  },
+                ],
+              },
+            ],
+            bts: null,
+            tech: [],
+          },
         ],
-        finalThoughts: {
-          heading: "Takeaways",
+        finalThoughts: null,
+        thanks: {
+          heading: "Credits",
           ornament: "",
-          paragraphs: [
-            "What you learned shipping animations in this project — iteration with code, read tests, or scope tradeoffs.",
+          items: [
+            {
+              name: "Nine Lives Studio — University of Staffordshire",
+              detail: "the team behind Dungeon Clash.",
+              url: "https://whaled-beach.itch.io/dungeon-clash",
+            },
+            {
+              name: "Project Lead & Producer",
+              detail: "Stuart Watkinson.",
+              url: "",
+            },
+            {
+              name: "Game Programmers",
+              detail:
+                "Vedang Kadam (Lead), Stuart Watkinson, Chloe Boyd, Sebastian Kwan Platts, Ryan Cook, Kia Weng.",
+              url: "",
+            },
+            {
+              name: "Game Designers",
+              detail:
+                "Matthew Reuss (Lead), Elliot Lancaster, Ethan Mejia, Alice Fulham, Jamie Truman, Lewis Adams, Jack Nashir, Avinash Kadali.",
+              url: "",
+            },
+            {
+              name: "Concept Art Team",
+              detail: "Isabelle Lear (Lead), Evie Hotter, Omar Noor.",
+              url: "",
+            },
+            {
+              name: "Animation Team",
+              detail: "Harsh Kataria (Lead), Alex Carolan, Rose Money.",
+              url: "",
+            },
+            {
+              name: "Game Art",
+              detail:
+                "Ryan Pilkington (Lead), Jordan Lofthouse, Matthew Mayes-Welsman, Mason Stutsbury.",
+              url: "",
+            },
+            {
+              name: "Sound",
+              detail: "Stuart Watkinson, Luis \"Mario\" Murcia, Omar Noor.",
+              url: "",
+            },
           ],
         },
-        thanks: null,
-        tags: ["Unreal Engine 5", "Team", "Gameplay"],
+        tags: [
+          "Animation Lead",
+          "Unreal Engine 5",
+          "Rigging",
+          "Maya",
+          "Platform fighter",
+          "Combat",
+        ],
       },
     ],
   },
@@ -972,11 +1216,38 @@ window.PORTFOLIO_CONFIG = {
     portraitImage: "",
     portraitAlt: "",
     heading: "About me",
-    lead: "I’m a 3D gameplay animator specializing in creating high-quality, expressive character animations and integrating them seamlessly into real-time engines.",
+    lead: "I’m a 3D gameplay animator specializing in creating hand-keyed, expressive character animations and integrating them seamlessly into real-time engines.",
     paragraphs: [
       "I love bridging the gap between artistic performance and technical implementation, ensuring that every movement is both visually polished and highly responsive to player input.",
     ],
-    skills: ["Autodesk Maya", "Unreal Engine 5", "Gameplay animation"],
+    coreSkills: [
+      "Hand-Keyed Animation",
+      "Character Rigging",
+      "Gameplay Mechanics",
+      "State Machine Architecture",
+      "Combat Design",
+      "Animation Blueprint Scripting",
+    ],
+    tools: [
+      {
+        name: "Maya",
+        icon: "https://cdn.simpleicons.org/autodeskmaya/e2e2e5",
+      },
+      {
+        name: "Unreal Engine",
+        icon: "https://cdn.simpleicons.org/unrealengine/e2e2e5",
+      },
+      {
+        name: "Motion Builder",
+        icon: "https://cdn.simpleicons.org/autodesk/e2e2e5",
+      },
+    ],
+    education: [
+      {
+        title: "BSc (Hons) Computer Games Design with Animation",
+        institution: "Staffordshire University",
+      },
+    ],
   },
   links: {
     linkedin: "https://www.linkedin.com/in/harsh-kataria-032501144",

@@ -612,8 +612,11 @@
     const intro = grid.intro
       ? `<p class="media-grid-intro prose-p mb-6 text-lg leading-relaxed text-on-surface-variant">${escapeHtml(grid.intro)}</p>`
       : "";
-    const cells = grid.items
-      .filter((it) => it && it.src)
+    const isVideoItem = (it) =>
+      it.video || /\.(mp4|webm|mov)(\?|#|$)/i.test(String(it.src || ""));
+    const items = grid.items.filter((it) => it && it.src);
+    const hasVideo = items.some(isVideoItem);
+    const cells = items
       .map((it) => {
         const capBelow = it.caption
           ? `<p class="media-grid-cap mt-2 text-center text-xs text-zinc-500">${escapeHtml(it.caption)}</p>`
@@ -621,11 +624,15 @@
         const capFig = it.caption
           ? `<figcaption class="media-grid-cap mt-2 text-center text-xs text-zinc-500">${escapeHtml(it.caption)}</figcaption>`
           : "";
-        const img = `<img class="media-grid-img block h-auto w-full rounded-md border border-outline-variant/25 bg-black/40" src="${escapeHtml(it.src)}" alt="${escapeHtml(it.alt || it.caption || "")}" loading="lazy" decoding="async" />`;
+        const media = isVideoItem(it)
+          ? it.autoplay
+            ? `<video class="media-grid-video block h-auto w-full rounded-md border border-outline-variant/25 bg-black" src="${escapeHtml(it.src)}" autoplay muted loop playsinline data-zoomable="true" aria-label="${escapeHtml(it.alt || it.caption || "Animation clip")}"></video>`
+            : `<video class="media-grid-video block h-auto w-full rounded-md border border-outline-variant/25 bg-black" src="${escapeHtml(it.src)}" controls preload="metadata" playsinline${it.poster ? ` poster="${escapeHtml(it.poster)}"` : ""}>${it.alt || it.caption ? escapeHtml(it.alt || it.caption) : ""}</video>`
+          : `<img class="media-grid-img block h-auto w-full rounded-md border border-outline-variant/25 bg-black/40" src="${escapeHtml(it.src)}" alt="${escapeHtml(it.alt || it.caption || "")}" loading="lazy" decoding="async" />`;
         const inner =
           it.href && String(it.href).trim()
-            ? `<div class="media-grid-card m-0"><a class="block transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" href="${escapeHtml(it.href)}" rel="noopener noreferrer">${img}</a>${capBelow}</div>`
-            : `<figure class="media-grid-figure m-0">${img}${capFig}</figure>`;
+            ? `<div class="media-grid-card m-0"><a class="block transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary" href="${escapeHtml(it.href)}" rel="noopener noreferrer">${media}</a>${capBelow}</div>`
+            : `<figure class="media-grid-figure m-0">${media}${capFig}</figure>`;
         return `<div class="media-grid-cell">${inner}</div>`;
       })
       .join("");
@@ -636,7 +643,7 @@
       <div class="media-grid-wrap mt-8">
         ${title}
         ${intro}
-        <div class="media-grid">${cells}</div>
+        <div class="media-grid${hasVideo ? " media-grid--video" : ""}">${cells}</div>
       </div>
     `;
   }
@@ -662,12 +669,25 @@
     const gridBlock = mediaGrids.map(renderMediaGrid).join("");
     if (sec.referenceLinksPosition === "after") {
       html += gridBlock + linkBlock;
+    } else if (sec.referenceLinksPosition === "end") {
+      html += gridBlock;
     } else {
       html += linkBlock + gridBlock;
     }
     html += renderEmbedBlock(sec.embed);
     if (sec.afterEmbedParagraphs && sec.afterEmbedParagraphs.length) {
-      html += `<div class="prose mb-6">${renderParagraphs(sec.afterEmbedParagraphs)}</div>`;
+      html += `<div class="prose mt-14 mb-6">${renderParagraphs(sec.afterEmbedParagraphs)}</div>`;
+    }
+    const afterGrids = Array.isArray(sec.afterEmbedMediaGrid)
+      ? sec.afterEmbedMediaGrid
+      : sec.afterEmbedMediaGrid
+        ? [sec.afterEmbedMediaGrid]
+        : [];
+    if (afterGrids.length) {
+      html += afterGrids.map(renderMediaGrid).join("");
+    }
+    if (sec.referenceLinksPosition === "end") {
+      html += linkBlock;
     }
     if (sec.bts && sec.bts.paragraphs && sec.bts.paragraphs.length) {
       html += `<h3 class="article-h3 mt-10 font-headline text-2xl font-bold text-primary-fixed md:text-3xl">${escapeHtml(sec.bts.title || "Behind the scenes")}</h3>`;
@@ -1009,13 +1029,6 @@
                   <div class="portfolio-piece-frame relative overflow-hidden border border-outline-variant/25 bg-surface-container-lowest">
                     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
                     ${thumbInner}
-                    <div class="pointer-events-none absolute bottom-3 left-3 right-3 flex items-end justify-between gap-4">
-                      <span class="inline-flex items-center gap-2 border border-outline-variant/20 bg-surface-container-highest/40 px-3 py-1 font-label text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface/80 backdrop-blur">
-                        <span class="h-1.5 w-1.5 rounded-full bg-primary-fixed"></span>
-                        Archive
-                      </span>
-                      <span class="hidden sm:inline font-label text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface/50">Open</span>
-                    </div>
                   </div>
                 </div>
                 <h3 class="portfolio-piece-label mt-4 font-headline text-xl font-bold uppercase tracking-tight text-on-surface group-hover:text-primary-fixed">${escapeHtml(title)}</h3>
@@ -1051,13 +1064,16 @@
       const items = hub.items || [];
       grid.innerHTML = items
         .map((item) => {
-          const href = `detail.html?kind=game&slug=${encodeURIComponent(item.slug)}`;
+          const href =
+            item.detailPage && String(item.detailPage).trim()
+              ? String(item.detailPage).trim()
+              : `detail.html?kind=game&slug=${encodeURIComponent(item.slug)}`;
           const cover =
             item.coverImage &&
             String(item.coverImage).trim() &&
             `<div class="relative aspect-video w-full overflow-hidden bg-surface-container-lowest">
               <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
-              <img class="h-full w-full object-cover opacity-80 grayscale transition-all duration-700 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105" src="${escapeHtml(item.coverImage)}" alt="" loading="lazy" />
+              <img class="h-full w-full object-cover object-left opacity-80 grayscale transition-all duration-700 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105" src="${escapeHtml(item.coverImage)}" alt="" loading="lazy" />
             </div>`;
           const ph = `<div class="relative flex aspect-video w-full items-center justify-center bg-surface-container-highest text-on-surface/30">
             <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent"></div>
@@ -1067,7 +1083,6 @@
             <a class="game-card group block overflow-hidden border border-outline-variant/15 bg-surface-container-low/40 transition-all hover:border-primary/35 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background" href="${href}" data-reveal>
               ${cover || ph}
               <div class="p-6">
-                <p class="mb-3 font-label text-[9px] font-bold uppercase tracking-[0.25em] text-primary-fixed/90">Archive entry</p>
                 <h2 class="font-headline text-2xl font-bold uppercase tracking-tight text-on-surface group-hover:text-primary-fixed">${escapeHtml(item.listTitle || item.entry?.title || item.slug)}</h2>
                 ${item.listSubtitle ? `<p class="mt-2 font-body text-sm text-on-surface/55">${escapeHtml(item.listSubtitle)}</p>` : ""}
               </div>
@@ -1092,28 +1107,53 @@
       String(about.portraitImage).trim() &&
       `<div class="about-portrait mb-8 overflow-hidden rounded-xl border border-outline-variant/30 bg-surface-container-low sm:float-right sm:ml-10 sm:mb-4 sm:max-w-xs"><img src="${escapeHtml(about.portraitImage)}" alt="${escapeHtml(about.portraitAlt || "")}" class="block h-auto w-full" loading="lazy" /></div>`;
 
-    const skills =
-      about.skills &&
-      about.skills.length &&
-      `<ul class="about-skills mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">${about.skills
-        .map(
-          (s) => `
+    const renderChipGrid = (items) =>
+      `<ul class="about-skills mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">${items
+        .map((s) => {
+          const name = typeof s === "string" ? s : s?.name || "";
+          const icon = typeof s === "string" ? "" : s?.icon || "";
+          return `
           <li class="group border border-outline-variant/15 bg-surface-container-low/40 p-6">
-            <div class="mb-4 flex h-11 w-11 items-center justify-center border border-outline-variant/20 bg-surface-container-highest/40">
-              <span class="material-symbols-outlined text-primary-fixed" aria-hidden="true">architecture</span>
-            </div>
-            <h3 class="font-headline text-xl font-bold text-on-surface">${escapeHtml(s)}</h3>
-            <p class="mt-2 font-body text-sm text-on-surface/55">Toolkit proficiency</p>
+            ${icon ? `<img src="${escapeHtml(icon)}" alt="" class="mb-4 h-10 w-10 object-contain opacity-90" loading="lazy" />` : ""}
+            <h3 class="font-headline text-xl font-bold text-on-surface">${escapeHtml(name)}</h3>
             <div class="mt-6 h-px w-0 bg-primary-container transition-all duration-500 group-hover:w-full"></div>
-          </li>`
-        )
+          </li>`;
+        })
         .join("")}</ul>`;
+
+    const coreSkillsList =
+      about.coreSkills && about.coreSkills.length
+        ? renderChipGrid(about.coreSkills)
+        : "";
+
+    const toolsList =
+      about.tools && about.tools.length ? renderChipGrid(about.tools) : "";
+
+    const educationList =
+      about.education && about.education.length
+        ? `<ul class="mt-8 space-y-4">${about.education
+            .map(
+              (e) => `
+            <li class="border border-outline-variant/15 bg-surface-container-low/40 p-6">
+              <div class="flex items-start gap-4">
+                <div class="mt-1 flex h-11 w-11 shrink-0 items-center justify-center border border-outline-variant/20 bg-surface-container-highest/40">
+                  <span class="material-symbols-outlined text-primary-fixed" aria-hidden="true">school</span>
+                </div>
+                <div>
+                  <h3 class="font-headline text-xl font-bold text-on-surface">${escapeHtml(e.title || "")}</h3>
+                  ${e.institution ? `<p class="mt-2 font-body text-sm text-on-surface/65">${escapeHtml(e.institution)}</p>` : ""}
+                  ${e.detail ? `<p class="mt-1 font-body text-sm text-on-surface/55">${escapeHtml(e.detail)}</p>` : ""}
+                </div>
+              </div>
+            </li>`
+            )
+            .join("")}</ul>`
+        : "";
 
     host.innerHTML = `
       <section class="reveal-section mb-12 border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
         <div class="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-start">
           <div class="md:col-span-7">
-            <p class="mb-4 font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Profile</p>
             <h2 class="font-headline text-5xl font-extrabold tracking-tighter text-on-surface md:text-6xl">${escapeHtml(about.heading || "About me")}</h2>
             ${about.lead ? `<p class="mt-6 text-xl font-body text-on-surface/75">${escapeHtml(about.lead)}</p>` : ""}
             <div class="about-prose mt-8 space-y-4 text-lg leading-relaxed text-on-surface/65">${renderParagraphs(about.paragraphs || [])}</div>
@@ -1121,22 +1161,35 @@
           <div class="md:col-span-5">
             <div class="glass-panel border border-outline-variant/15 p-6">
               <p class="font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Current status</p>
-              <p class="mt-3 font-body text-sm text-on-surface/60">Open to collaboration and internships.</p>
+              <p class="mt-3 font-body text-sm text-on-surface/60">Open to full-time roles and internships.</p>
             </div>
             ${portrait ? `<div class="mt-8">${portrait}</div>` : ""}
           </div>
         </div>
       </section>
 
-      ${skills ? `<section class="reveal-section border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
+      ${coreSkillsList ? `<section class="reveal-section mb-12 border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
         <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p class="font-label text-[10px] font-bold uppercase tracking-[0.4em] text-primary-fixed">Toolkit schema</p>
-            <h2 class="mt-2 font-headline text-4xl font-bold uppercase tracking-tighter text-on-surface">Skills</h2>
-          </div>
-          <p class="font-label text-[10px] uppercase tracking-[0.4em] text-on-surface/40 md:text-right">Execution platforms</p>
+          <h2 class="font-headline text-4xl font-bold uppercase tracking-tighter text-on-surface">Core Skills</h2>
+          <p class="font-label text-[10px] uppercase tracking-[0.4em] text-on-surface/40 md:text-right">Animation &amp; gameplay</p>
         </div>
-        ${skills}
+        ${coreSkillsList}
+      </section>` : ""}
+
+      ${toolsList ? `<section class="reveal-section mb-12 border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h2 class="font-headline text-4xl font-bold uppercase tracking-tighter text-on-surface">Tools</h2>
+          <p class="font-label text-[10px] uppercase tracking-[0.4em] text-on-surface/40 md:text-right">Software &amp; engines</p>
+        </div>
+        ${toolsList}
+      </section>` : ""}
+
+      ${educationList ? `<section class="reveal-section border border-outline-variant/15 bg-surface-container-low/40 p-8 md:p-12" data-reveal>
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h2 class="font-headline text-4xl font-bold uppercase tracking-tighter text-on-surface">Education &amp; Qualifications</h2>
+          <p class="font-label text-[10px] uppercase tracking-[0.4em] text-on-surface/40 md:text-right">Academic record</p>
+        </div>
+        ${educationList}
       </section>` : ""}
     `;
   }
@@ -1312,6 +1365,7 @@
   function initLightbox() {
     let box = null;
     let imgEl = null;
+    let videoEl = null;
     let capEl = null;
     let lastFocus = null;
 
@@ -1324,22 +1378,21 @@
       box.hidden = true;
       box.innerHTML = `
         <button type="button" class="lightbox-close" aria-label="Close">&times;</button>
-        <img class="lightbox-img" alt="" />
+        <img class="lightbox-img" alt="" hidden />
+        <video class="lightbox-video" playsinline controls loop hidden></video>
         <p class="lightbox-cap" aria-hidden="true"></p>`;
       document.body.appendChild(box);
       imgEl = box.querySelector(".lightbox-img");
+      videoEl = box.querySelector(".lightbox-video");
       capEl = box.querySelector(".lightbox-cap");
       box.addEventListener("click", (e) => {
         if (e.target === imgEl) return;
+        if (e.target === videoEl) return;
         close();
       });
     }
 
-    function open(src, alt, caption) {
-      ensureBox();
-      lastFocus = document.activeElement;
-      imgEl.src = src;
-      imgEl.alt = alt || "";
+    function setCaption(caption) {
       if (caption) {
         capEl.textContent = caption;
         capEl.style.display = "";
@@ -1347,6 +1400,36 @@
         capEl.textContent = "";
         capEl.style.display = "none";
       }
+    }
+
+    function openImage(src, alt, caption) {
+      ensureBox();
+      lastFocus = document.activeElement;
+      videoEl.pause();
+      videoEl.removeAttribute("src");
+      videoEl.load();
+      videoEl.hidden = true;
+      imgEl.hidden = false;
+      imgEl.src = src;
+      imgEl.alt = alt || "";
+      setCaption(caption);
+      box.hidden = false;
+      document.body.style.overflow = "hidden";
+      const closeBtn = box.querySelector(".lightbox-close");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function openVideo(src, alt, caption) {
+      ensureBox();
+      lastFocus = document.activeElement;
+      imgEl.hidden = true;
+      imgEl.src = "";
+      videoEl.hidden = false;
+      videoEl.src = src;
+      videoEl.setAttribute("aria-label", alt || caption || "Animation clip");
+      videoEl.muted = false;
+      videoEl.play().catch(() => {});
+      setCaption(caption);
       box.hidden = false;
       document.body.style.overflow = "hidden";
       const closeBtn = box.querySelector(".lightbox-close");
@@ -1357,19 +1440,34 @@
       if (!box || box.hidden) return;
       box.hidden = true;
       imgEl.src = "";
+      videoEl.pause();
+      videoEl.removeAttribute("src");
+      videoEl.load();
       document.body.style.overflow = "";
       if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
     }
 
     document.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+
+      const vid = e.target.closest("video.media-grid-video[data-zoomable]");
+      if (vid) {
+        e.preventDefault();
+        const cap = vid
+          .closest(".media-grid-cell")
+          ?.querySelector(".media-grid-cap")?.textContent;
+        const alt = vid.getAttribute("aria-label") || "";
+        openVideo(vid.currentSrc || vid.src, alt, cap || alt);
+        return;
+      }
+
       const img = e.target.closest(".media-grid-img");
       if (!img) return;
-      if (e.target.closest("a")) return;
       e.preventDefault();
       const cap = img
         .closest(".media-grid-cell")
         ?.querySelector(".media-grid-cap")?.textContent;
-      open(img.currentSrc || img.src, img.alt, cap || img.alt);
+      openImage(img.currentSrc || img.src, img.alt, cap || img.alt);
     });
 
     document.addEventListener("keydown", (e) => {
